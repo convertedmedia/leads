@@ -16,6 +16,7 @@
     "url": "https://github.com/convertedmedia/leads/issues"
   },
   "dependencies": {
-    "express": "~4.10.2"
+    "express": "~4.10.2",
+    "mailin": "~3.0.3"
   }
 }
