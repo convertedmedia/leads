@@ -1,6 +1,7 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var mailin = require('mailin');
+var request = require('request');
 
 var LIDs = {
     "ERP" : "1762",
@@ -51,16 +52,11 @@ function getLead(UID, type){
         "take" : "1",
         "query" : queryJson
       };
-  xhttp.open('POST', 'https://apidata.leadexec.net/', true);
-  xhttp.send(payload);
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState == 4 && xhttp.status == 200) {
-        console.log(xhttp.responseText);
-    };
-};
-  
-  
-  
-  
-
+    request({
+        uri: "https://apidata.leadexec.net/",
+        method: "POST",
+        form: payload
+    }, function (error, response, body) {
+        console.log(body)
+    });
 }
