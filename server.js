@@ -7,17 +7,13 @@ app.get('/', function(req, res){
 });
 
 
-app.post('/incoming_mail', function(req, res){
-  var form = new formidable.IncomingForm()
-  form.parse(req, function(err, fields, files) {
-    console.log(fields.from)
-    console.log(fields.headers['Subject'])
-    console.log(fields.plain)
-    console.log(fields.html)
-    console.log(fields.reply_plain)
-    res.writeHead(200, {'content-type': 'text/plain'})
-    res.end('Message Received. Thanks!\r\n')
-  })
+app.post('/', function(req, res){
+	var jsonfile = require('jsonfile');
+	var file = '/tmp/reqheaders.json';
+	var obj = req.headers;
+	jsonfile.writeFile(file, obj, function(err) {
+		console.error(err);
+	});  
 })
 
 
