@@ -6,19 +6,17 @@ app.get('/', function(req, res){
   res.send('<h1>Hello world</h1>');
 });
 
-
-app.post('/', function(req, res){
-	var jsonfile = require('jsonfile');
-	var file = '/tmp/reqheaders.json';
-	var obj = req.headers;
-	jsonfile.writeFile(file, obj, function(err) {
-		console.error(err);
-	});  
-})
-
-
 http.listen(8080, function(){
   console.log('listening on *:8080');
+});
+
+mailin.start({
+    port: 25,
+    disableWebhook:true
+});
+
+mailin.on('message', function(connection, data, content) {
+    console.log("received email!");
 });
 
 //app.post('/', function(req, res, next) {
