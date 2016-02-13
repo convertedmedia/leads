@@ -18,7 +18,10 @@ mailin.start({
 // Handle email
 mailin.on('message', function(connection, data, content) {
     var emailContent = data.text;
-    var UIDLocation = emailContent.search(/Lead /i) + 5;
-    var UID = emailContent[UIDLocation, UIDLocation + 8];
+	console.log(emailContent);
+	var UIDLocation = emailContent.search(/\*Lead /i) + 6;
+	console.log(UIDLocation);
+    var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
     console.log(UID);
+	console.log("was it successful?");
 });
