@@ -18,6 +18,7 @@
   "dependencies": {
     "express": "~4.10.2",
     "jsonfile": "^2.2.3",
-    "mailin": "~3.0.3"
+    "mailin": "~3.0.3",
+    "request": "^2.69.0"
   }
 }
