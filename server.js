@@ -15,21 +15,10 @@ mailin.start({
     disableWebhook:true
 });
 
+// Handle email
 mailin.on('message', function(connection, data, content) {
-    console.log("received email!");
-	console.log(data.text);
-	console.log("data type: " + (typeof data.text));
+    var emailContent = data.text;
+    var UIDLocation = emailContent.search(/Lead /i) + 5;
+    var UID = emailContent[UIDLocation, UIDLocation + 8];
+    console.log(UID);
 });
-
-//app.post('/', function(req, res, next) {
-    //req.form.complete(function(err, fields, files) {
-    //if (err) { next(err); }
-    //else {
-    //        console.log(fields);
-    //        console.log('---------------');
-    //        console.log(files);
-    //        res.redirect(req.url);
-    //    }
-    //});
-  //  console.log('received post');
-//});
