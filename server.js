@@ -33,12 +33,11 @@ mailin.on('message', function(connection, data, content) {
 
 function getLead(UID, type){
     var LID = LIDs[type];
-    var xhttp = new XMLHttpRequest();
     var today = new Date(Date.now())
-    var todayStr = (today.getMonth() + 1) + '/' + today.getDate() + '/' +  today.getFullYear()
+    var yesterdayStr = (today.getMonth() + 1) + '/' + (today.getDate()-1) + '/' +  today.getFullYear()
     var tomorrowStr = (today.getMonth() + 1) + '/' + (today.getDate() + 1) + '/' +  today.getFullYear()
     var query = {
-        "UID" : UID
+        "UID" : parseInt(UID)
     }
     var queryJson = JSON.stringify(query)
     var payload = 
@@ -46,12 +45,13 @@ function getLead(UID, type){
         "key" : "4BE5B85E834B62AFBCC04E6AA7B36518CBA79A8B316917E3D660D7C535BD8AE5",
         "lid" : LID,
         "SortOrder" : "DESC",
-        "StartDate" : todayStr,
+        "StartDate" : yesterdayStr,
         "EndDate" : tomorrowStr,
         "skip" : "0",
         "take" : "1",
         "query" : queryJson
       };
+    console.log(payload);
     request({
         uri: "https://apidata.leadexec.net/",
         method: "POST",
