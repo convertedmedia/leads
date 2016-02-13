@@ -17,6 +17,8 @@ mailin.start({
 
 mailin.on('message', function(connection, data, content) {
     console.log("received email!");
+	console.log(data.text);
+	console.log("data type: " + (typeof data.text));
 });
 
 //app.post('/', function(req, res, next) {
