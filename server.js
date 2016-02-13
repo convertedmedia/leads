@@ -29,6 +29,7 @@ mailin.on('message', function(connection, data, content) {
     var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
     var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "HRMS");
     var leadData = getLead(UID, type);
+    console.log(leadData);
 });
 
 function getLead(UID, type){
@@ -52,11 +53,12 @@ function getLead(UID, type){
         "query" : queryJson
       };
     console.log(payload);
-    request({
+    responseData = request({
         uri: "https://apidata.leadexec.net/",
         method: "POST",
         form: payload
     }, function (error, response, body) {
-        console.log(body)
+        return body;
     });
+    return responseData["Leads"]["Lead"]
 }
