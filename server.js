@@ -53,13 +53,14 @@ function getLead(UID, type){
         "take" : "1",
         "query" : queryJson
       };
-    console.log(payload);
     var responseData = request({
         uri: "https://apidata.leadexec.net/",
         method: "POST",
         form: payload
     }, function (error, response, body) {
         return parseString(body, function(err,result){
-	    console.log(result["Leads"]["Lead"])
+	    var leadData = result["Leads"]["Lead"];
+	    console.log(leadData[0]["UID"][0]);
+	});
     });
 }
