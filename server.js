@@ -29,10 +29,10 @@ mailin.on('message', function(connection, data, content) {
     var UIDLocation = emailContent.search(/\*Lead /i) + 6;
     var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
     var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
-    var leadData = getLead(UID, type);
-    console.log(leadData);
+    getLead(UID, type);
 });
 
+//gets lead information
 function getLead(UID, type){
     var LID = LIDs[type];
     var today = new Date(Date.now())
@@ -59,12 +59,7 @@ function getLead(UID, type){
         method: "POST",
         form: payload
     }, function (error, response, body) {
-        return parseString(body, function(err,result){
-	    return result;
-	});
+        var leadData = response.getElementsByTagName("Leads")[0].getElementsByTagName("Lead")[0];
+        console.log(leadData);
     });
-    console.log(responseData)
-    console.log(responseData["Leads"]);
-    console.log("lead object type: " + (typeof responseData["Leads"]["Lead"]));
-    return responseData["Leads"]["Lead"];
 }
