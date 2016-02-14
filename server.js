@@ -65,6 +65,6 @@ function getLead(UID, type){
     });
     console.log(responseData)
     console.log(responseData["Leads"]);
-    console.log("lead object type: " + (typeof responseData["Leads"]["Lead"]);
+    console.log("lead object type: " + (typeof responseData["Leads"]["Lead"]));
     return responseData["Leads"]["Lead"];
 }
