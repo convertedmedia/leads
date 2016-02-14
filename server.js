@@ -60,9 +60,11 @@ function getLead(UID, type){
         form: payload
     }, function (error, response, body) {
         return parseString(body, function(err,result){
-	    console.log(result);
 	    return result;
 	});
     });
-    //return responseData["Leads"]["Lead"]
+    console.log(responseData)
+    console.log(responseData["Leads"]);
+    console.log("lead object type: " + (typeof responseData["Leads"]["Lead"]);
+    return responseData["Leads"]["Lead"];
 }
