@@ -2,6 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var mailin = require('mailin');
 var request = require('request');
+var parseString = require('xml2js').parseString;
 
 var LIDs = {
     "ERP" : "1762",
@@ -27,7 +28,7 @@ mailin.on('message', function(connection, data, content) {
     var emailContent = data.text
     var UIDLocation = emailContent.search(/\*Lead /i) + 6;
     var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
-    var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "HRMS");
+    var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
     var leadData = getLead(UID, type);
     console.log(leadData);
 });
@@ -44,7 +45,7 @@ function getLead(UID, type){
     var payload = 
       {
         "key" : "4BE5B85E834B62AFBCC04E6AA7B36518CBA79A8B316917E3D660D7C535BD8AE5",
-        "lid" : LID,
+        "lid" : parseInt(LID),
         "SortOrder" : "DESC",
         "StartDate" : yesterdayStr,
         "EndDate" : tomorrowStr,
@@ -53,12 +54,15 @@ function getLead(UID, type){
         "query" : queryJson
       };
     console.log(payload);
-    responseData = request({
+    var responseData = request({
         uri: "https://apidata.leadexec.net/",
         method: "POST",
         form: payload
     }, function (error, response, body) {
-        return body;
+        return parseString(body, function(err,result){
+	    console.log(result);
+	    return result;
+	});
     });
-    return responseData["Leads"]["Lead"]
+    //return responseData["Leads"]["Lead"]
 }
