@@ -59,7 +59,7 @@ function getLead(UID, type){
         method: "POST",
         form: payload
     }, function (error, response, body) {
-        var leadData = response.getElementsByTagName("Leads")[0].getElementsByTagName("Lead")[0];
-        console.log(leadData);
+        return parseString(body, function(err,result){
+	    console.log(result["Leads"]["Lead"])
     });
 }
