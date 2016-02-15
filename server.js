@@ -53,7 +53,7 @@ function getLead(UID, type){
         "take" : "1",
         "query" : queryJson
       };
-    var responseData = request({
+    request({
         uri: "https://apidata.leadexec.net/",
         method: "POST",
         form: payload
@@ -65,7 +65,76 @@ function getLead(UID, type){
                     leadData[name] = leadData[name][0];
                 };
             };
-            console.log(leadData);
+            handleLead(leadData);
 	});
     });
 }
+
+function handleLead(leadData) {
+    var url = "https://geoip.maxmind.com/geoip/v2.1/city/" + leadData["IPAddress"];
+    var auth = {
+        'Authorization' : "Basic " + Utilities.base64Encode("105273:yIr8LibI16CA")
+      }
+    request({
+        uri: url,
+        method: "GET",
+        headers: auth
+    });
+    }, function (error, response, body) {
+	var responseJSON = JSON.parse(response);
+        console.log("Country: " + responseJSON["country"]["names"]["en"]);
+        console.log("Subdivision: " + responseJSON["subdivisions"][0]["names"]["en"]);
+        console.log("iso code: " + responseJSON["subdivisions"][0]["iso_code"]);
+        console.log("Registered country: " + responseJSON["registered_country"][0]["names"]["en"]);
+        console.log("Organisation: " + responseJSON["traits"]["autonomous_system_organization"]);
+    });
+}
+
+
+/*
+ var success = true
+      var url = "https://geoip.maxmind.com/geoip/v2.1/city/" + ip
+      var headers = {
+        'Authorization' : "Basic " + Utilities.base64Encode("105273:yIr8LibI16CA")
+      }
+      var options = {
+        'method' : 'get',
+        'headers' : headers,
+        "muteHttpExceptions" : true
+      }
+      var response = UrlFetchApp.fetch(url, options);
+      var json =  response.getContentText();
+      var data = JSON.parse(json);
+      trials++;
+    } catch(error) {
+      success = false;
+      trials++;
+    }
+  } while ((success == false || typeof data == "undefined") && trials < 3);
+  if (success == true) {
+    try {
+      var region = data["subdivisions"][0]["names"]["en"]
+    } catch(error) {
+      var region = "";
+    }
+    try {
+      var org = data["traits"]["autonomous_system_organization"]
+    } catch(error) {
+      var org = "";
+    }
+    try {
+      var state = data["subdivisions"][0]["iso_code"]
+    } catch(error) {
+      var state = "";
+    }
+    try {
+      var answer = [data["country"]["names"]["en"],region,org];
+    } catch(error) {
+      try {
+        var country = data["registered_country"][0]["names"]["en"]
+      } catch(error) {
+        var country = "";
+      }
+      var answer = [country, region, org]
+    }
+    */
