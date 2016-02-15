@@ -3,6 +3,7 @@ var http = require('http').Server(app);
 var mailin = require('mailin');
 var request = require('request');
 var parseString = require('xml2js').parseString;
+var geoip2ws = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000)
 
 var LIDs = {
     "ERP" : "1762",
@@ -71,21 +72,16 @@ function getLead(UID, type){
 }
 
 function handleLead(leadData) {
-    var url = "https://geoip.maxmind.com/geoip/v2.1/city/" + leadData["IPAddress"];
-    var auth = {
-        'Authorization' : "Basic " + Buffer("105273:yIr8LibI16CA").toString('base64')
-      };
-    request({
-        uri: url,
-        method: "GET",
-        headers: auth
-    }, function (error, response, body) {
-	var responseJSON = JSON.parse(response);
-        console.log("Country: " + responseJSON["country"]["names"]["en"]);
-        console.log("Subdivision: " + responseJSON["subdivisions"][0]["names"]["en"]);
-        console.log("iso code: " + responseJSON["subdivisions"][0]["iso_code"]);
-        console.log("Registered country: " + responseJSON["registered_country"][0]["names"]["en"]);
-        console.log("Organisation: " + responseJSON["traits"]["autonomous_system_organization"]);
+    geo(leadData["IPAddress"], function(err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Country: " + data.country.names.en);
+            console.log("Subdivision: " + data.subdivisions.names.en);  
+            console.log("iso code: " + data.subdivisions.iso_code);
+            console.log("Registered country: " + data.registered_country.names.en);
+            console.log("Organisation: " + data.traits.autonomous_system_organization);
+        };
     });
 }
 
