@@ -3,7 +3,7 @@ var http = require('http').Server(app);
 var mailin = require('mailin');
 var request = require('request');
 var parseString = require('xml2js').parseString;
-var geoip2ws = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000)
+var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000)
 
 var LIDs = {
     "ERP" : "1762",
@@ -77,8 +77,8 @@ function handleLead(leadData) {
             console.log(err);
         } else {
             console.log("Country: " + data.country.names.en);
-            console.log("Subdivision: " + data.subdivisions.names.en);  
-            console.log("iso code: " + data.subdivisions.iso_code);
+            console.log("Subdivision: " + data.subdivisions[0].names.en);  
+            console.log("iso code: " + data.subdivisions[0].iso_code);
             console.log("Registered country: " + data.registered_country.names.en);
             console.log("Organisation: " + data.traits.autonomous_system_organization);
         };

@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "express": "~4.10.2",
+    "geoip2ws": "^1.7.3",
     "jsonfile": "^2.2.3",
     "mailin": "~3.0.3",
     "request": "^2.69.0",
