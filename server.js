@@ -59,8 +59,13 @@ function getLead(UID, type){
         form: payload
     }, function (error, response, body) {
         return parseString(body, function(err,result){
-	    var leadData = result["Leads"]["Lead"];
-	    console.log(leadData[0]["UID"][0]);
+	    var leadData = result["Leads"]["Lead"][0];
+	    for (var name in leadData) {
+                if (obj.hasOwnProperty(name)){
+                    leadData[name] = leadData[name][0];
+                };
+            };
+            console.log(leadData["UID"]);
 	});
     });
 }
