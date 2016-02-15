@@ -61,7 +61,7 @@ function getLead(UID, type){
         return parseString(body, function(err,result){
 	    var leadData = result["Leads"]["Lead"][0];
 	    for (var name in leadData) {
-                if (obj.hasOwnProperty(name)){
+                if (leadData.hasOwnProperty(name)){
                     leadData[name] = leadData[name][0];
                 };
             };

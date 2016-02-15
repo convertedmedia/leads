@@ -1,0 +1,9 @@
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
