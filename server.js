@@ -65,7 +65,7 @@ function getLead(UID, type){
                     leadData[name] = leadData[name][0];
                 };
             };
-            console.log(leadData["UID"]);
+            console.log(leadData);
 	});
     });
 }
