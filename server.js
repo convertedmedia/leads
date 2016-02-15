@@ -73,13 +73,12 @@ function getLead(UID, type){
 function handleLead(leadData) {
     var url = "https://geoip.maxmind.com/geoip/v2.1/city/" + leadData["IPAddress"];
     var auth = {
-        'Authorization' : "Basic " + Utilities.base64Encode("105273:yIr8LibI16CA")
-      }
+        'Authorization' : "Basic " + Buffer("105273:yIr8LibI16CA").toString('base64')
+      };
     request({
         uri: url,
         method: "GET",
         headers: auth
-    });
     }, function (error, response, body) {
 	var responseJSON = JSON.parse(response);
         console.log("Country: " + responseJSON["country"]["names"]["en"]);
