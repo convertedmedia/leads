@@ -34,7 +34,6 @@ mailin.on('message', function(connection, data, content) {
     console.log("UIDLocation: " + UIDLocation);
     var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
     var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
-    setTimeout(getLead(UID, type),10000);
 });
 
 //gets lead information
@@ -58,6 +57,7 @@ function getLead(UID, type){
         "take" : "1",
         "query" : queryJson
       };
+
     request({
         uri: "https://apidata.leadexec.net/",
         method: "POST",
@@ -71,7 +71,6 @@ function getLead(UID, type){
 		console.log(payload);
 		console.log(result);
 	    };
-	    for (var name in leadData) {
                 if (leadData.hasOwnProperty(name)){
                     leadData[name] = leadData[name][0];
                 };

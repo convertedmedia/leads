@@ -7,3 +7,84 @@ info: Mailin Smtp server listening on port 25
 warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
 listening on *:8080
 info: Mailin Smtp server listening on port 25
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+a user connected
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+a user connected
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+a user connected
+info: 836b7103-59cc-403c-99b3-1cdbe2a719f1 Receiving message from gabriel@kitmondo.com
+info: 836b7103-59cc-403c-99b3-1cdbe2a719f1 Processing message from gabriel@kitmondo.com
+info: 836b7103-59cc-403c-99b3-1cdbe2a719f1 End processing message, deleted .tmp/836b7103-59cc-403c-99b3-1cdbe2a719f1
+info: 22dc08a0-1bab-4683-b90e-7c7c7595d6c3 Receiving message from gabriel@kitmondo.com
+info: 22dc08a0-1bab-4683-b90e-7c7c7595d6c3 Processing message from gabriel@kitmondo.com
+info: 22dc08a0-1bab-4683-b90e-7c7c7595d6c3 End processing message, deleted .tmp/22dc08a0-1bab-4683-b90e-7c7c7595d6c3
+info: 868c50f6-7560-431e-aa34-0760e3cb957f Receiving message from gabriel@kitmondo.com
+info: 868c50f6-7560-431e-aa34-0760e3cb957f Processing message from gabriel@kitmondo.com
+info: 868c50f6-7560-431e-aa34-0760e3cb957f End processing message, deleted .tmp/868c50f6-7560-431e-aa34-0760e3cb957f
+a user connected
+a user connected
+info: 569660d0-2e24-4900-adcd-618c622a3198 Receiving message from gabriel@kitmondo.com
+info: 569660d0-2e24-4900-adcd-618c622a3198 Processing message from gabriel@kitmondo.com
+info: 569660d0-2e24-4900-adcd-618c622a3198 End processing message, deleted .tmp/569660d0-2e24-4900-adcd-618c622a3198
+Vietnam
+info: 02b896d9-dc6f-4a0b-addb-99ee2f2405cb Receiving message from gabriel@kitmondo.com
+info: 02b896d9-dc6f-4a0b-addb-99ee2f2405cb Processing message from gabriel@kitmondo.com
+info: 02b896d9-dc6f-4a0b-addb-99ee2f2405cb End processing message, deleted .tmp/02b896d9-dc6f-4a0b-addb-99ee2f2405cb
+Vietnam
+info: 07dd5be8-64b1-4b87-aae5-7839624232f0 Receiving message from gabriel@kitmondo.com
+info: 07dd5be8-64b1-4b87-aae5-7839624232f0 Processing message from gabriel@kitmondo.com
+info: 07dd5be8-64b1-4b87-aae5-7839624232f0 End processing message, deleted .tmp/07dd5be8-64b1-4b87-aae5-7839624232f0
+info: d5c0addd-f2a6-435b-a37c-2bca56cf5a02 Receiving message from gabriel@kitmondo.com
+info: d5c0addd-f2a6-435b-a37c-2bca56cf5a02 Processing message from gabriel@kitmondo.com
+info: d5c0addd-f2a6-435b-a37c-2bca56cf5a02 End processing message, deleted .tmp/d5c0addd-f2a6-435b-a37c-2bca56cf5a02
+info: 1edc3136-09b6-479d-bb1b-e95a15c88fce Receiving message from gabriel@kitmondo.com
+info: 1edc3136-09b6-479d-bb1b-e95a15c88fce Processing message from gabriel@kitmondo.com
+info: 1edc3136-09b6-479d-bb1b-e95a15c88fce End processing message, deleted .tmp/1edc3136-09b6-479d-bb1b-e95a15c88fce
+Malaysia
+info: c380b425-d247-4699-88b3-826ded822520 Receiving message from gabriel@kitmondo.com
+info: c380b425-d247-4699-88b3-826ded822520 Processing message from gabriel@kitmondo.com
+info: c380b425-d247-4699-88b3-826ded822520 End processing message, deleted .tmp/c380b425-d247-4699-88b3-826ded822520
+Malaysia
+info: f0274dac-f683-4663-bfb3-f64297790c16 Receiving message from gabriel@kitmondo.com
+info: f0274dac-f683-4663-bfb3-f64297790c16 Processing message from gabriel@kitmondo.com
+info: f0274dac-f683-4663-bfb3-f64297790c16 End processing message, deleted .tmp/f0274dac-f683-4663-bfb3-f64297790c16
+info: cf5c9e06-fa69-42fd-aebd-3e4f8aa74453 Receiving message from gabriel@kitmondo.com
+info: cf5c9e06-fa69-42fd-aebd-3e4f8aa74453 Processing message from gabriel@kitmondo.com
+info: cf5c9e06-fa69-42fd-aebd-3e4f8aa74453 End processing message, deleted .tmp/cf5c9e06-fa69-42fd-aebd-3e4f8aa74453
+[TypeError: Cannot read property 'iso_code' of undefined]
+New Zealand
+info: d15f6df3-d1d6-486c-a523-b022c2a2274c Receiving message from gabriel@kitmondo.com
+info: d15f6df3-d1d6-486c-a523-b022c2a2274c Processing message from gabriel@kitmondo.com
+info: d15f6df3-d1d6-486c-a523-b022c2a2274c End processing message, deleted .tmp/d15f6df3-d1d6-486c-a523-b022c2a2274c
+[TypeError: Cannot read property 'iso_code' of undefined]
+New Zealand
+info: fc32b950-5fd4-4529-abaf-f9dc6efd8942 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: fc32b950-5fd4-4529-abaf-f9dc6efd8942 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: fc32b950-5fd4-4529-abaf-f9dc6efd8942 End processing message, deleted .tmp/fc32b950-5fd4-4529-abaf-f9dc6efd8942
+events.js:85
+      throw er; // Unhandled 'error' event
+            ^
+TypeError: Cannot read property '0' of undefined
+    at /home/ubuntu/leads/server.js:65:44
+    at Parser.<anonymous> (/home/ubuntu/leads/node_modules/xml2js/lib/xml2js.js:484:18)
+    at Parser.emit (events.js:107:17)
+    at Object.onclosetag (/home/ubuntu/leads/node_modules/xml2js/lib/xml2js.js:445:26)
+    at emit (/home/ubuntu/leads/node_modules/xml2js/node_modules/sax/lib/sax.js:639:35)
+    at emitNode (/home/ubuntu/leads/node_modules/xml2js/node_modules/sax/lib/sax.js:644:5)
+    at closeTag (/home/ubuntu/leads/node_modules/xml2js/node_modules/sax/lib/sax.js:903:7)
+    at Object.write (/home/ubuntu/leads/node_modules/xml2js/node_modules/sax/lib/sax.js:1444:13)
+    at Parser.exports.Parser.Parser.parseString (/home/ubuntu/leads/node_modules/xml2js/lib/xml2js.js:503:31)
+    at Parser.parseString (/home/ubuntu/leads/node_modules/xml2js/lib/xml2js.js:7:59)
+    at exports.parseString (/home/ubuntu/leads/node_modules/xml2js/lib/xml2js.js:535:19)
+    at Request._callback (/home/ubuntu/leads/server.js:64:16)
+    at Request.self.callback (/home/ubuntu/leads/node_modules/request/request.js:199:22)
+    at Request.emit (events.js:110:17)
+    at Request.<anonymous> (/home/ubuntu/leads/node_modules/request/request.js:1036:10)
+    at Request.emit (events.js:129:20)

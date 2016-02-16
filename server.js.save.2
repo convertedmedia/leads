@@ -64,19 +64,17 @@ function getLead(UID, type){
         form: payload
     }, function (error, response, body) {
         return parseString(body, function(err,result){
-	    try {
+	    var tryGetLead = setInterval(function() {try {
 	    	var leadData = result["Leads"]["Lead"][0];
-	    } catch(err) {
-		console.log(err);
-		console.log(payload);
-		console.log(result);
-	    };
-	    for (var name in leadData) {
-                if (leadData.hasOwnProperty(name)){
-                    leadData[name] = leadData[name][0];
-                };
-            };
-            getLocation(leadData);
+	    	for (var name in leadData) {
+                	if (leadData.hasOwnProperty(name)){
+                    		leadData[name] = leadData[name][0];
+                	};
+            	};
+		
+            	getLocation(leadData);
+		
+            },10000);
 	});
     });
 }
