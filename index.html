@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Lead Manager</title>
+    </head>
+    <body>
+        <h1>Lead Manager</h1>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io();
+            socket.on('lead notification', function(leadDataString){
+                var leadData = JSON.parse(leadDataString);
+                if (!Notify.needsPermission) {
+                    doLeadNotification(leadData);
+                } else if (Notify.isSupported()) {
+                    Notify.requestPermission(function (leadData) {
+                        console.log('Permission has been granted by the user');
+                        doLeadNotification(leadData);
+                    }, function () {
+                        console.warn('Permission has been denied by the user');
+                    });
+                };
+            });
+            function doLeadNotification(leadData) {
+                var leadNotification = new Notify('New lead in territory: ' + leadData.UID, {
+                    body :  'UID: ' + leadData.UID + '\n\
+                            Name: ' + leadData.Name + '\n\
+                            Company: ' + leadData.Company + '\n\
+                            Email: ' + leadData.Email + '\n\
+                            Phone: ' + leadData.Phone
+                });
+            };
+        </script>
+    </body>
+</html>

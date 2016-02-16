@@ -4,6 +4,8 @@ var mailin = require('mailin');
 var request = require('request');
 var parseString = require('xml2js').parseString;
 var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000)
+var Notify = require('notifyjs');
+var io = require('socket.io')(http);
 
 var LIDs = {
     "ERP" : "1762",
@@ -12,7 +14,7 @@ var LIDs = {
 }
 
 app.get('/', function(req, res){
-  res.send('<h1>Hello world</h1>');
+  res.sendFile(__dirName + "\index.html");
 });
 
 http.listen(8080, function(){
@@ -66,16 +68,17 @@ function getLead(UID, type){
                     leadData[name] = leadData[name][0];
                 };
             };
-            handleLead(leadData);
+            getLocation(leadData);
 	});
     });
 }
 
-function handleLead(leadData) {
+function getLocation(leadData) {
     geo(leadData["IPAddress"], function(err, data) {
         if (err) {
             console.log(err);
         } else {
+            io.emit('lead notification', JSON.stringify(leadData));
             console.log("Country: " + data.country.names.en);
             console.log("Subdivision: " + data.subdivisions[0].names.en);  
             console.log("iso code: " + data.subdivisions[0].iso_code);
@@ -84,8 +87,6 @@ function handleLead(leadData) {
         };
     });
 }
-
-
 /*
  var success = true
       var url = "https://geoip.maxmind.com/geoip/v2.1/city/" + ip
