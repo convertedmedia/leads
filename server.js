@@ -83,13 +83,13 @@ function getLocation(leadData) {
             console.log(err);
         } else {
             if (data.country.names.en.length > 0) {
-                leadData.Country = data.country.names.en;
+                leadData["Country"] = data.country.names.en;
             } else {
-                leadData.Country = data.registered_country.names.en;
+                leadData["Country"] = data.registered_country.names.en;
             };
             leadData.StateProvince = data.subdivisions[0].iso_code;
             leadData.ServerCountry = data.traits.autonomous_system_organization;
-            if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country)) {
+            if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
                 io.emit('lead notification', JSON.stringify(leadData));
             } else {
                 console.log(leadData.Country);
