@@ -82,12 +82,18 @@ function getLocation(leadData) {
         if (err) {
             console.log(err);
         } else {
-            io.emit('lead notification', JSON.stringify(leadData));
-            console.log("Country: " + data.country.names.en);
-            console.log("Subdivision: " + data.subdivisions[0].names.en);  
-            console.log("iso code: " + data.subdivisions[0].iso_code);
-            console.log("Registered country: " + data.registered_country.names.en);
-            console.log("Organisation: " + data.traits.autonomous_system_organization);
+            if (data.country.names.en.length > 0) {
+                leadData.Country = data.country.names.en;
+            } else {
+                leadData.Country = data.registered_country.names.en;
+            };
+            leadData.StateProvince = data.subdivisions[0].iso_code;
+            leadData.ServerCountry = data.traits.autonomous_system_organization;
+            if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country)) {
+                io.emit('lead notification', JSON.stringify(leadData));
+            } else {
+                console.log(leadData.Country);
+            }
         };
     });
 }
