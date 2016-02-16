@@ -9,10 +9,9 @@
         <script>
             var socket = io();
             socket.on('lead notification', function(leadDataString){
+		console.log(leadDataString);
                 var leadData = JSON.parse(leadDataString);
-                if (!("Notification" in window)) {
-                    alert("Notifications not supported");
-                } else if (Notification.permission === "granted") {
+                if (Notification.permission === "granted") {
                     doLeadNotification(leadData);
                 } else if (Notification.permission === "denied") {
                     Notification.requestPermission(function (permission, leadData) {
@@ -31,7 +30,7 @@
                             Name: ' + leadData.Name + '\n\
                             Company: ' + leadData.Company + '\n\
                             Email: ' + leadData.Email + '\n\
-                            Phone: ' + leadData.Phone
+                            TelephoneNumber: ' + leadData.Phone
                 });
             };
         </script>
