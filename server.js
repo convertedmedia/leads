@@ -14,7 +14,7 @@ var LIDs = {
 }
 
 app.get('/', function(req, res){
-  res.sendFile(__dirName + "\index.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 http.listen(8080, function(){
@@ -72,6 +72,10 @@ function getLead(UID, type){
 	});
     });
 }
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+});
 
 function getLocation(leadData) {
     geo(leadData["IPAddress"], function(err, data) {

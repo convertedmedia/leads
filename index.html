@@ -6,6 +6,7 @@
     <body>
         <h1>Lead Manager</h1>
         <script src="/socket.io/socket.io.js"></script>
+	<script src="notify.js"></script>
         <script>
             var socket = io();
             socket.on('lead notification', function(leadDataString){

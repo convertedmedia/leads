@@ -1,0 +1,55 @@
+{
+  "name": "notifyjs",
+  "version": "1.2.8",
+  "description": "A handy wrapper for the Web Notifications API",
+  "main": "notify.js",
+  "devDependencies": {
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.10",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.6",
+    "sinon": "^1.16.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexgibson/notify.js.git"
+  },
+  "keywords": [
+    "web",
+    "notification",
+    "nofity"
+  ],
+  "author": {
+    "name": "Alex Gibson"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexgibson/notify.js/issues"
+  },
+  "scripts": {
+    "test": "karma start --browsers Firefox --single-run"
+  },
+  "gitHead": "6a81d34027912627b0a7c350c544d21084fdfedd",
+  "homepage": "https://github.com/alexgibson/notify.js#readme",
+  "_id": "notifyjs@1.2.8",
+  "_shasum": "073adc042f8ad13584ea872382f8875292c09f2c",
+  "_from": "notifyjs@*",
+  "_npmVersion": "2.14.3",
+  "_nodeVersion": "4.1.0",
+  "_npmUser": {
+    "name": "alexgibson",
+    "email": "alxgbsn@gmail.com"
+  },
+  "maintainers": [
+    {
+      "name": "alexgibson",
+      "email": "alxgbsn@gmail.com"
+    }
+  ],
+  "dist": {
+    "shasum": "073adc042f8ad13584ea872382f8875292c09f2c",
+    "tarball": "http://registry.npmjs.org/notifyjs/-/notifyjs-1.2.8.tgz"
+  },
+  "directories": {},
+  "_resolved": "https://registry.npmjs.org/notifyjs/-/notifyjs-1.2.8.tgz"
+}

@@ -20,7 +20,10 @@
     "geoip2ws": "^1.7.3",
     "jsonfile": "^2.2.3",
     "mailin": "~3.0.3",
+    "notify.js": "0.0.3",
+    "notifyjs": "^1.2.8",
     "request": "^2.69.0",
+    "socket.io": "^1.4.5",
     "xml2js": "^0.4.16"
   }
 }
