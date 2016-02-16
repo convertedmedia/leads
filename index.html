@@ -6,24 +6,27 @@
     <body>
         <h1>Lead Manager</h1>
         <script src="/socket.io/socket.io.js"></script>
-	<script src="notify.js"></script>
         <script>
             var socket = io();
             socket.on('lead notification', function(leadDataString){
                 var leadData = JSON.parse(leadDataString);
-                if (!Notify.needsPermission) {
+                if (!("Notification" in window)) {
+                    alert("Notifications not supported");
+                } else if (Notification.permission === "granted") {
                     doLeadNotification(leadData);
-                } else if (Notify.isSupported()) {
-                    Notify.requestPermission(function (leadData) {
-                        console.log('Permission has been granted by the user');
-                        doLeadNotification(leadData);
-                    }, function () {
-                        console.warn('Permission has been denied by the user');
+                } else if (Notification.permission === "denied") {
+                    Notification.requestPermission(function (permission, leadData) {
+                        if (!('permission' in Notification)) {
+                            Notification.permission = permission;
+                        }
+                        if (permission === 'granted') {
+                            doLeadNotification(leadData);
+                        }
                     });
                 };
             });
             function doLeadNotification(leadData) {
-                var leadNotification = new Notify('New lead in territory: ' + leadData.UID, {
+                var leadNotification = new Notification('New lead in territory: ' + leadData.UID, {
                     body :  'UID: ' + leadData.UID + '\n\
                             Name: ' + leadData.Name + '\n\
                             Company: ' + leadData.Company + '\n\
