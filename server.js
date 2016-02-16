@@ -28,7 +28,7 @@ mailin.start({
 
 // Handle email
 mailin.on('message', function(connection, data, content) {
-    var emailContent = data.text
+    var emailContent = data.text;
     var UIDLocation = emailContent.search(/\*Lead /i) + 6;
     var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
     var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
@@ -38,13 +38,13 @@ mailin.on('message', function(connection, data, content) {
 //gets lead information
 function getLead(UID, type){
     var LID = LIDs[type];
-    var today = new Date(Date.now())
-    var yesterdayStr = (today.getMonth() + 1) + '/' + (today.getDate()-1) + '/' +  today.getFullYear()
-    var tomorrowStr = (today.getMonth() + 1) + '/' + (today.getDate() + 1) + '/' +  today.getFullYear()
+    var today = new Date(Date.now());
+    var yesterdayStr = (today.getMonth() + 1) + '/' + (today.getDate()-1) + '/' +  today.getFullYear();
+    var tomorrowStr = (today.getMonth() + 1) + '/' + (today.getDate() + 1) + '/' +  today.getFullYear();
     var query = {
         "UID" : parseInt(UID)
-    }
-    var queryJson = JSON.stringify(query)
+    };
+    var queryJson = JSON.stringify(query);
     var payload = 
       {
         "key" : "4BE5B85E834B62AFBCC04E6AA7B36518CBA79A8B316917E3D660D7C535BD8AE5",
@@ -82,13 +82,26 @@ function getLocation(leadData) {
         if (err) {
             console.log(err);
         } else {
-            if (data.country.names.en.length > 0) {
+            if (data.country.names.en !== undefined && data.country.names.en.length) {
                 leadData["Country"] = data.country.names.en;
             } else {
-                leadData["Country"] = data.registered_country.names.en;
+                try {
+                    leadData["Country"] = data.registered_country.names.en;
+                } catch(err) {
+                    io.emit('unknown notification', JSON.stringify(leadData));
+                    console.log(err);
+                };
             };
-            leadData.StateProvince = data.subdivisions[0].iso_code;
-            leadData.ServerCountry = data.traits.autonomous_system_organization;
+            try {
+                leadData.StateProvince = data.subdivisions[0].iso_code;
+            } catch(err) {
+                console.log(err);   
+            };
+            try {
+                leadData.ServerCountry = data.traits.autonomous_system_organization;
+            } catch (err) {
+                console.log(err);
+            };
             if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
                 io.emit('lead notification', JSON.stringify(leadData));
             } else {

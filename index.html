@@ -24,8 +24,33 @@
                     });
                 };
             });
+            socket.on('unknown notification', function(leadDataString){
+		console.log(leadDataString);
+                var leadData = JSON.parse(leadDataString);
+                if (Notification.permission === "granted") {
+                    doUnknownNotification(leadData);
+                } else if (Notification.permission === "denied") {
+                    Notification.requestPermission(function (permission, leadData) {
+                        if (!('permission' in Notification)) {
+                            Notification.permission = permission;
+                        }
+                        if (permission === 'granted') {
+                            doUnknownNotification(leadData);
+                        }
+                    });
+                };
+            });
             function doLeadNotification(leadData) {
                 var leadNotification = new Notification('New lead in territory: ' + leadData.UID, {
+                    body :  'UID: ' + leadData.UID + '\n\
+                            Name: ' + leadData.Name + '\n\
+                            Company: ' + leadData.Company + '\n\
+                            Email: ' + leadData.Email + '\n\
+                            TelephoneNumber: ' + leadData.Phone
+                });
+            };
+            function doUnknownNotification(leadData) {
+                var leadNotification = new Notification('New lead in unkmown territory: ' + leadData.UID, {
                     body :  'UID: ' + leadData.UID + '\n\
                             Name: ' + leadData.Name + '\n\
                             Company: ' + leadData.Company + '\n\
