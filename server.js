@@ -4,12 +4,11 @@ var mailin = require('mailin');
 var request = require('request');
 var RequestRetry = require('node-request-retry');
 var parser = require('xml2json');
-var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000)
-var Notify = require('notifyjs');
+var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000);
 var io = require('socket.io')(http);
 
 RequestRetry.setMaxRetries(10);
-RequestRetry.setRetryDelay(4000);
+RequestRetry.setRetryDelay(3000);
 
 var LIDs = {
     "ERP" : "1762",
@@ -50,8 +49,7 @@ function getLead(UID, type){
     var query = {
         "UID" : parseInt(UID)
     };
-	console.log(UID);
-	    var queryJson = JSON.stringify(query);
+	var queryJson = JSON.stringify(query);
     var payload = 
       {
         "key" : "4BE5B85E834B62AFBCC04E6AA7B36518CBA79A8B316917E3D660D7C535BD8AE5",
@@ -63,23 +61,16 @@ function getLead(UID, type){
         "take" : "1",
         "query" : queryJson
       };
-console.log(payload);
     var requestRetry = new RequestRetry();
 	var retryConditions = [function (response, body) {
 		var leadsData = parser.toJson(body, {object: true});
 		console.log(leadsData);
-		return leadsData["Leads"]["$"]["sentcount"] == 0;
+		return leadsData["Leads"]["sentcount"] == 0;
 	}];
 	requestRetry.setRetryConditions(retryConditions);
     requestRetry.post({uri: "https://apidata.leadexec.net/", formData: payload}, function (error, response, body) {
         var leadsData = parser.toJson(body, {object: true});
-console.log(leadsData);
-        var leadData = leadsData["Leads"][0]["Lead"]
-	    for (var name in leadData) {
-            if (leadData.hasOwnProperty(name)){
-                leadData[name] = leadData[name][0];
-            };
-        };
+        var leadData = leadsData["Leads"]["Lead"]
         getLocation(leadData);
     });
 }
@@ -93,39 +84,25 @@ function getLocation(leadData) {
         if (err) {
             console.log(err);
         } else {
-	    try {
-            	if (data.country.names.en !== undefined && data.country.names.en.length) {
-                	leadData["Country"] = data.country.names.en;
-            	} else {
-                	try {
-                    		leadData["Country"] = data.registered_country.names.en;
-                	} catch(err) {
-                    		io.emit('unknown notification', JSON.stringify(leadData));
-                    		console.log(err);
-                	};
-            	};
-            	try {
-                	leadData.StateProvince = data.subdivisions[0].iso_code;
-            	} catch(err) {
-                	console.log(err);   
-            	};
-	    } catch (err) {
-		console.log(err);
-		io.emit('unknown notification', JSON.stringify(leadData));
-	    };
-            try {
-                leadData.ServerCountry = data.traits.autonomous_system_organization;
-            } catch (err) {
-                console.log(err);
-            };
-            if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
-                io.emit('lead notification', JSON.stringify(leadData));
-            } else {
-                console.log(leadData.Country);
-            }
+            if (data.country.names.en !== undefined && data.country.names.en.length) {
+             	leadData["Country"] = data.country.names.en;
+           	} else if (data.registered_country.names.en !== undefined && data.registered_country.names.en.length) {
+                leadData["Country"] = data.registered_country.names.en;
+           	};
+           	if (data.subdivisions[0].iso_code !== undefined && data.subdivisions[0].iso_code.length) {
+               	leadData.StateProvince = data.subdivisions[0].iso_code;
+           	};
+           	if (data.traits.autonomous_system_organization !== undefined && data.traits.autonomous_system_organization.length) {
+				leadData.ServerCountry = data.traits.autonomous_system_organization;
+			};
+		}
+		if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
+			io.emit('lead notification', JSON.stringify({"type": (leadData.hasOwnProperty("Country") ? "inTerritory" : "unknown"), "leadData": leadData}));
+	    } else {
+            console.log(leadData.Country);
         };
     });
-}
+};
 /*
  var success = true
       var url = "https://geoip.maxmind.com/geoip/v2.1/city/" + ip
