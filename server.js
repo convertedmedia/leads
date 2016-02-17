@@ -71,7 +71,12 @@ function getLead(UID, type){
 			console.log("Number of attempts: " + response.attempts);
 		};
         var leadData = leadsData["Leads"]["Lead"]
-		getLocation(leadData);
+        if (leadsData["Leads"]["sentcount"]) > 0) {
+			getLocation(leadData);
+		} else {
+			console.log("needed more attempts, response: " + leadsData);
+			io.emit('failed notification');
+		}
     });
 }
 

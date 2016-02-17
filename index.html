@@ -11,7 +11,7 @@
             socket.on('lead notification', function(data){
                 var dataJson = JSON.parse(data);
                 var leadData = dataJson["leadData"];
-                var countryKnown = JSON.parse["countryKnown"];
+                var countryKnown = dataJson["countryKnown"];
                 if (Notification.permission === "granted") {
                     doLeadNotification(leadData);
                 } else if (Notification.permission === "denied") {
@@ -25,6 +25,20 @@
                     });
                 };
             });
+            socket.on(('failed notification'), function(){
+                if (Notification.permission === "granted") {
+                    doFailedNotification();
+                } else if (Notification.permission === "denied") {
+                    Notification.requestPermission(function (permission) {
+                        if (!('permission' in Notification)) {
+                            Notification.permission = permission;
+                        }
+                        if (permission === 'granted') {
+                            doFailedNotification();
+                        }
+                    });
+                };
+            });
             function doLeadNotification(leadData, countryKnown) {
                 var leadNotification = new Notification('New lead in ' + (countryKnown == 'yes' ? '' : 'unknown') + 'territory: ' + leadData.UID, {
                     body :  'Lead Source: ' + leadData.LeadSource + '\n\
@@ -34,6 +48,9 @@
                             TelephoneNumber: ' + leadData.Phone
                 });
             };
+            function doFailedNotification() {
+				var failedNotification = new Notification('Failed to fetch new lead');
+			};
         </script>
     </body>
 </html>
