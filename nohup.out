@@ -88,3 +88,182 @@ TypeError: Cannot read property '0' of undefined
     at Request.emit (events.js:110:17)
     at Request.<anonymous> (/home/ubuntu/leads/node_modules/request/request.js:1036:10)
     at Request.emit (events.js:129:20)
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+a user connected
+info: 256299e3-59c2-49ad-bf53-b58ee42cc9f1 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 256299e3-59c2-49ad-bf53-b58ee42cc9f1 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 256299e3-59c2-49ad-bf53-b58ee42cc9f1 End processing message, deleted .tmp/256299e3-59c2-49ad-bf53-b58ee42cc9f1
+Number of attempts: undefined
+India
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+info: 10b8c027-e41b-4ef2-997e-bf23f38369c6 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+a user connected
+info: 10b8c027-e41b-4ef2-997e-bf23f38369c6 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 10b8c027-e41b-4ef2-997e-bf23f38369c6 End processing message, deleted .tmp/10b8c027-e41b-4ef2-997e-bf23f38369c6
+Number of attempts: undefined
+Ireland
+info: 68ed5dcb-3558-43c6-a398-2f5063cf9a91 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 68ed5dcb-3558-43c6-a398-2f5063cf9a91 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 68ed5dcb-3558-43c6-a398-2f5063cf9a91 End processing message, deleted .tmp/68ed5dcb-3558-43c6-a398-2f5063cf9a91
+Number of attempts: undefined
+India
+a user connected
+info: 26e2ad42-c573-4a23-b833-06550b316895 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 26e2ad42-c573-4a23-b833-06550b316895 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 26e2ad42-c573-4a23-b833-06550b316895 End processing message, deleted .tmp/26e2ad42-c573-4a23-b833-06550b316895
+Number of attempts: undefined
+United Arab Emirates
+info: 621dab48-e6ad-414c-baaf-35b7d6bdfcd5 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 621dab48-e6ad-414c-baaf-35b7d6bdfcd5 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 621dab48-e6ad-414c-baaf-35b7d6bdfcd5 End processing message, deleted .tmp/621dab48-e6ad-414c-baaf-35b7d6bdfcd5
+Number of attempts: undefined
+Pakistan
+info: 52c66447-92ea-493b-ac18-9ffc760598e8 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 52c66447-92ea-493b-ac18-9ffc760598e8 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 52c66447-92ea-493b-ac18-9ffc760598e8 End processing message, deleted .tmp/52c66447-92ea-493b-ac18-9ffc760598e8
+Number of attempts: undefined
+United Kingdom
+info: 8f2fc4e0-c019-4c21-b213-cefad31084ce Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 8f2fc4e0-c019-4c21-b213-cefad31084ce Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 8f2fc4e0-c019-4c21-b213-cefad31084ce End processing message, deleted .tmp/8f2fc4e0-c019-4c21-b213-cefad31084ce
+Number of attempts: undefined
+India
+info: fa1c0875-4cbf-454d-b4bd-62668798ad0e Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: fa1c0875-4cbf-454d-b4bd-62668798ad0e Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: fa1c0875-4cbf-454d-b4bd-62668798ad0e End processing message, deleted .tmp/fa1c0875-4cbf-454d-b4bd-62668798ad0e
+Number of attempts: undefined
+Indonesia
+info: 05b82eb5-1b20-4023-a2a7-d54739334e26 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 05b82eb5-1b20-4023-a2a7-d54739334e26 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 05b82eb5-1b20-4023-a2a7-d54739334e26 End processing message, deleted .tmp/05b82eb5-1b20-4023-a2a7-d54739334e26
+Number of attempts: undefined
+Indonesia
+info: cac2c33c-5421-4604-9c1c-8d16796b7421 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: cac2c33c-5421-4604-9c1c-8d16796b7421 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: cac2c33c-5421-4604-9c1c-8d16796b7421 End processing message, deleted .tmp/cac2c33c-5421-4604-9c1c-8d16796b7421
+Number of attempts: undefined
+United Arab Emirates
+info: 90efd717-3795-457d-8ee0-774eb3cadb29 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 90efd717-3795-457d-8ee0-774eb3cadb29 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 90efd717-3795-457d-8ee0-774eb3cadb29 End processing message, deleted .tmp/90efd717-3795-457d-8ee0-774eb3cadb29
+info: 8f1d22b0-0339-4afb-b688-e940a38419b5 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 8f1d22b0-0339-4afb-b688-e940a38419b5 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 8f1d22b0-0339-4afb-b688-e940a38419b5 End processing message, deleted .tmp/8f1d22b0-0339-4afb-b688-e940a38419b5
+Number of attempts: undefined
+Indonesia
+Number of attempts: undefined
+United Arab Emirates
+info: 6578a35c-76e1-4e5d-bd00-6969f0752b02 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 6578a35c-76e1-4e5d-bd00-6969f0752b02 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 6578a35c-76e1-4e5d-bd00-6969f0752b02 End processing message, deleted .tmp/6578a35c-76e1-4e5d-bd00-6969f0752b02
+Number of attempts: undefined
+Indonesia
+info: 336b6d31-fcee-4c5f-bd89-17bba88a44d9 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 336b6d31-fcee-4c5f-bd89-17bba88a44d9 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 336b6d31-fcee-4c5f-bd89-17bba88a44d9 End processing message, deleted .tmp/336b6d31-fcee-4c5f-bd89-17bba88a44d9
+Number of attempts: undefined
+United States
+/home/ubuntu/leads/server.js:73
+        if (leadsData["Leads"]["sentcount"]) > 0) {
+                                             ^
+SyntaxError: Unexpected token >
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.Module.runMain (module.js:501:10)
+    at startup (node.js:129:16)
+    at node.js:814:3
+/home/ubuntu/leads/server.js:73
+        if (leadsData["Leads"]["sentcount"]) > 0) {
+                                             ^
+SyntaxError: Unexpected token >
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.Module.runMain (module.js:501:10)
+    at startup (node.js:129:16)
+    at node.js:814:3
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+a user connected
+info: 8471528b-1335-4160-8338-72523a98bd63 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 8471528b-1335-4160-8338-72523a98bd63 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 8471528b-1335-4160-8338-72523a98bd63 End processing message, deleted .tmp/8471528b-1335-4160-8338-72523a98bd63
+Number of attempts: undefined
+United States
+a user connected
+info: e7aa9beb-0662-49a1-9f1b-57afd9abb04b Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: e7aa9beb-0662-49a1-9f1b-57afd9abb04b Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: e7aa9beb-0662-49a1-9f1b-57afd9abb04b End processing message, deleted .tmp/e7aa9beb-0662-49a1-9f1b-57afd9abb04b
+Number of attempts: undefined
+United States
+info: 9e221245-781f-4e1e-8d5f-1cc3c8db8397 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 9e221245-781f-4e1e-8d5f-1cc3c8db8397 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 9e221245-781f-4e1e-8d5f-1cc3c8db8397 End processing message, deleted .tmp/9e221245-781f-4e1e-8d5f-1cc3c8db8397
+Number of attempts: undefined
+United States
+info: 0d323bcd-fb57-4df6-9895-20a8abec3d17 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 0d323bcd-fb57-4df6-9895-20a8abec3d17 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 0d323bcd-fb57-4df6-9895-20a8abec3d17 End processing message, deleted .tmp/0d323bcd-fb57-4df6-9895-20a8abec3d17
+Number of attempts: undefined
+United States
+info: 96d5e175-02f3-4452-920e-94b9eae17447 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 96d5e175-02f3-4452-920e-94b9eae17447 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 96d5e175-02f3-4452-920e-94b9eae17447 End processing message, deleted .tmp/96d5e175-02f3-4452-920e-94b9eae17447
+Number of attempts: undefined
+India
+info: d374f4ce-3c69-4cd1-a7b5-508fb25998b1 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: d374f4ce-3c69-4cd1-a7b5-508fb25998b1 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: d374f4ce-3c69-4cd1-a7b5-508fb25998b1 End processing message, deleted .tmp/d374f4ce-3c69-4cd1-a7b5-508fb25998b1
+Number of attempts: undefined
+Saudi Arabia
+info: 00b0898a-2029-48c6-934f-d4dfaa341e75 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 00b0898a-2029-48c6-934f-d4dfaa341e75 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 00b0898a-2029-48c6-934f-d4dfaa341e75 End processing message, deleted .tmp/00b0898a-2029-48c6-934f-d4dfaa341e75
+Number of attempts: undefined
+India
+info: ba60dcb5-07c7-44c3-aed4-b8662101834c Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: ba60dcb5-07c7-44c3-aed4-b8662101834c Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: ba60dcb5-07c7-44c3-aed4-b8662101834c End processing message, deleted .tmp/ba60dcb5-07c7-44c3-aed4-b8662101834c
+Number of attempts: undefined
+Kenya
+info: b43292ba-5f9b-4012-b864-36ffd1d53bd0 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: b43292ba-5f9b-4012-b864-36ffd1d53bd0 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: b43292ba-5f9b-4012-b864-36ffd1d53bd0 End processing message, deleted .tmp/b43292ba-5f9b-4012-b864-36ffd1d53bd0
+Number of attempts: undefined
+needed more attempts, response: [object Object]
+info: 440ac93b-1dcb-4135-83dc-09b8a6e44810 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 440ac93b-1dcb-4135-83dc-09b8a6e44810 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 440ac93b-1dcb-4135-83dc-09b8a6e44810 End processing message, deleted .tmp/440ac93b-1dcb-4135-83dc-09b8a6e44810
+Number of attempts: undefined
+Singapore
+info: d5336d94-e1a9-4d3c-a093-5521587a0de0 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: d5336d94-e1a9-4d3c-a093-5521587a0de0 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: d5336d94-e1a9-4d3c-a093-5521587a0de0 End processing message, deleted .tmp/d5336d94-e1a9-4d3c-a093-5521587a0de0
+a user connected
+Number of attempts: undefined
+needed more attempts, response: [object Object]
+info: b0ea1c9a-e4c0-4492-94f6-ba63ba42fcc3 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: b0ea1c9a-e4c0-4492-94f6-ba63ba42fcc3 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: b0ea1c9a-e4c0-4492-94f6-ba63ba42fcc3 End processing message, deleted .tmp/b0ea1c9a-e4c0-4492-94f6-ba63ba42fcc3
+Number of attempts: undefined
+needed more attempts, response: [object Object]
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+info: 8fed3363-5b40-4ea1-9294-c4e3c4ae8f2d Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 8fed3363-5b40-4ea1-9294-c4e3c4ae8f2d Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+retrycondlength: 1
+info: 8fed3363-5b40-4ea1-9294-c4e3c4ae8f2d End processing message, deleted .tmp/8fed3363-5b40-4ea1-9294-c4e3c4ae8f2d
+Number of attempts: undefined
+needed more attempts, response: [object Object]
+a user connected

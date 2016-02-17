@@ -10,10 +10,11 @@
             var socket = io();
             socket.on('lead notification', function(data){
                 var dataJson = JSON.parse(data);
+		console.log(dataJson);
                 var leadData = dataJson["leadData"];
                 var countryKnown = dataJson["countryKnown"];
                 if (Notification.permission === "granted") {
-                    doLeadNotification(leadData);
+                    doLeadNotification(leadData, countryKnown);
                 } else if (Notification.permission === "denied") {
                     Notification.requestPermission(function (permission, leadData, countryKnown) {
                         if (!('permission' in Notification)) {
@@ -40,6 +41,7 @@
                 };
             });
             function doLeadNotification(leadData, countryKnown) {
+		console.log("countryKnown: " + countryKnown);
                 var leadNotification = new Notification('New lead in ' + (countryKnown == 'yes' ? '' : 'unknown') + 'territory: ' + leadData.UID, {
                     body :  'Lead Source: ' + leadData.LeadSource + '\n\
                             Name: ' + leadData.Name + '\n\

@@ -7,8 +7,8 @@ var parser = require('xml2json');
 var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000);
 var io = require('socket.io')(http);
 
-RequestRetry.setMaxRetries(12);
-RequestRetry.setRetryDelay(2500);
+RequestRetry.setMaxRetries(30);
+RequestRetry.setRetryDelay(2200);
 
 var LIDs = {
     "ERP" : "1762",
@@ -61,16 +61,18 @@ function getLead(UID, type){
       };
     var requestRetry = new RequestRetry();
 	var retryConditions = [function (response, body) {
+		console.log("did try");
 		var leadsData = parser.toJson(body, {object: true});
 		return leadsData["Leads"]["sentcount"] == 0;
 	}];
+	console.log("retrycondlength: " + retryConditions.length);
 	requestRetry.setRetryConditions(retryConditions);
-    requestRetry.post({uri: "https://apidata.leadexec.net/", formData: payload}, function (error, response, body) {
-		var leadsData = parser.toJson(body, {object: true});
+    	requestRetry.post({uri: "https://apidata.leadexec.net/", formData: payload}, function (error, response, body) {
+	var leadsData = parser.toJson(body, {object: true});
         if (response) {
 			console.log("Number of attempts: " + response.attempts);
 		};
-        if (leadsData["Leads"]["sentcount"]) > 0) {
+        if (leadsData["Leads"]["sentcount"] > 0) {
 			var leadData = leadsData["Leads"]["Lead"];
 			getLocation(leadData);
 		} else {
@@ -90,7 +92,7 @@ function getLocation(leadData) {
 			if (err) {
 				console.log(err);
 			} else {
-				if (typeof data.country.names.en !== undefined && data.country.names.en.length) {
+				if (typeof data.country !== undefined && typeof data.country.names.en !== undefined && data.country.names.en.length) {
 					leadData["Country"] = data.country.names.en;
 				} else if (typeof data.registered_country.names.en !== undefined && data.registered_country.names.en.length) {
 					leadData["Country"] = data.registered_country.names.en;
@@ -103,6 +105,7 @@ function getLocation(leadData) {
 				};
 			}
 			if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
+				console.log("has own property? " + leadData.hasOwnProperty("Country"));
 				io.emit('lead notification', JSON.stringify({"countryKnown": (leadData.hasOwnProperty("Country") ? "yes" : "no"), "leadData": leadData}));
 			};
 			console.log(leadData.Country);
