@@ -70,8 +70,8 @@ function getLead(UID, type){
         if (response) {
 			console.log("Number of attempts: " + response.attempts);
 		};
-        var leadData = leadsData["Leads"]["Lead"]
         if (leadsData["Leads"]["sentcount"]) > 0) {
+			var leadData = leadsData["Leads"]["Lead"];
 			getLocation(leadData);
 		} else {
 			console.log("needed more attempts, response: " + leadsData);
@@ -85,27 +85,31 @@ io.on('connection', function(socket){
 });
 
 function getLocation(leadData) {
-    geo(leadData["IPAddress"], function(err, data) {
-        if (err) {
-            console.log(err);
-        } else {
-            if (typeof data.country.names.en !== undefined && data.country.names.en.length) {
-             	leadData["Country"] = data.country.names.en;
-           	} else if (typeof data.registered_country.names.en !== undefined && data.registered_country.names.en.length) {
-                leadData["Country"] = data.registered_country.names.en;
-           	};
-           	if (typeof data.subdivisions !== undefined && typeof data.subdivisions.length > 0 &&  typeof data.subdivisions[0].iso_code !== undefined && data.subdivisions[0].iso_code.length) {
-               	leadData.StateProvince = data.subdivisions[0].iso_code;
-           	};
-           	if (typeof data.traits.autonomous_system_organization !== undefined && data.traits.autonomous_system_organization.length) {
-				leadData.ServerCountry = data.traits.autonomous_system_organization;
+	try {
+		geo(leadData["IPAddress"], function(err, data) {
+			if (err) {
+				console.log(err);
+			} else {
+				if (typeof data.country.names.en !== undefined && data.country.names.en.length) {
+					leadData["Country"] = data.country.names.en;
+				} else if (typeof data.registered_country.names.en !== undefined && data.registered_country.names.en.length) {
+					leadData["Country"] = data.registered_country.names.en;
+				};
+				if (typeof data.subdivisions !== undefined && typeof data.subdivisions.length > 0 &&  typeof data.subdivisions[0].iso_code !== undefined && data.subdivisions[0].iso_code.length) {
+					leadData.StateProvince = data.subdivisions[0].iso_code;
+				};
+				if (typeof data.traits.autonomous_system_organization !== undefined && data.traits.autonomous_system_organization.length) {
+					leadData.ServerCountry = data.traits.autonomous_system_organization;
+				};
+			}
+			if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
+				io.emit('lead notification', JSON.stringify({"countryKnown": (leadData.hasOwnProperty("Country") ? "yes" : "no"), "leadData": leadData}));
 			};
-		}
-		if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
-			io.emit('lead notification', JSON.stringify({"countryKnown": (leadData.hasOwnProperty("Country") ? "yes" : "no"), "leadData": leadData}));
-	    };
-        console.log(leadData.Country);
-    });
+			console.log(leadData.Country);
+		});
+	} catch (err) {
+		console.log(err);
+	};
 };
 /*
  var success = true
