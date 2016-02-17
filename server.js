@@ -1,14 +1,10 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var mailin = require('mailin');
-var request = require('request');
-var RequestRetry = require('node-request-retry');
+var request = require('requestretry');
 var parser = require('xml2json');
 var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000);
 var io = require('socket.io')(http);
-
-RequestRetry.setMaxRetries(30);
-RequestRetry.setRetryDelay(2200);
 
 var LIDs = {
     "ERP" : "1762",
@@ -41,9 +37,13 @@ mailin.on('message', function(connection, data, content) {
 //gets lead information
 function getLead(UID, type){
     var LID = LIDs[type];
-    var today = new Date(Date.now());
-    var yesterdayStr = (today.getMonth() + 1) + '/' + (today.getDate()-1) + '/' +  today.getFullYear();
-    var tomorrowStr = (today.getMonth() + 1) + '/' + (today.getDate() + 1) + '/' +  today.getFullYear();
+    var today = new Date();
+    var yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    var tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    var yesterdayStr = (yesterday.getMonth() + 1) + '/' + yesterday.getDate() + '/' +  yesterday.getFullYear();
+    var tomorrowStr = (tomorrow.getMonth() + 1) + '/' + tomorrow.getDate() + '/' +  tomorrow.getFullYear();
     var query = {
         "UID" : parseInt(UID)
     };
@@ -59,25 +59,30 @@ function getLead(UID, type){
         "take" : "1",
         "query" : queryJson
       };
-    var requestRetry = new RequestRetry();
-	var retryConditions = [function (response, body) {
-		console.log("did try");
+    function leadGetSuccess(err, response, body) {
 		var leadsData = parser.toJson(body, {object: true});
-		return leadsData["Leads"]["sentcount"] == 0;
+		return err || leadsData["Leads"]["sentcount"] == 0;
 	}];
-	console.log("retrycondlength: " + retryConditions.length);
-	requestRetry.setRetryConditions(retryConditions);
-    	requestRetry.post({uri: "https://apidata.leadexec.net/", formData: payload}, function (error, response, body) {
-	var leadsData = parser.toJson(body, {object: true});
-        if (response) {
-			console.log("Number of attempts: " + response.attempts);
-		};
-        if (leadsData["Leads"]["sentcount"] > 0) {
+	request({
+		method: "post",
+		uri: "https://apidata.leadexec.net/",
+		formData: payload,
+		maxAttempts: 10,
+		retryDelay: 2000,
+		retryStrategy: leadGetSuccess
+	}, function (error, response, body) {
+		if (response) {
+			console.log("The number of request attempts: " + response.attempts);
+        };
+        var leadsData = parser.toJson(body, {object: true});
+		if (leadsData["Leads"]["sentcount"] > 0) {
 			var leadData = leadsData["Leads"]["Lead"];
+			leadData.Market = type;
+			leadData.gotLead = true;
 			getLocation(leadData);
 		} else {
 			console.log("needed more attempts, response: " + leadsData);
-			io.emit('failed notification');
+			io.emit('lead notification', JSON.stringify({"gotLead": false, "gotLocation": false, "UID": UID, "Market" = type}));
 		}
     });
 }
@@ -94,9 +99,13 @@ function getLocation(leadData) {
 			} else {
 				if (typeof data.country !== undefined && typeof data.country.names.en !== undefined && data.country.names.en.length) {
 					leadData["Country"] = data.country.names.en;
+					leadData.gotLocation = true;
 				} else if (typeof data.registered_country.names.en !== undefined && data.registered_country.names.en.length) {
 					leadData["Country"] = data.registered_country.names.en;
-				};
+					leadData.gotLocation = true;
+				} else {
+					leadData.gotLocation = false;
+				}
 				if (typeof data.subdivisions !== undefined && typeof data.subdivisions.length > 0 &&  typeof data.subdivisions[0].iso_code !== undefined && data.subdivisions[0].iso_code.length) {
 					leadData.StateProvince = data.subdivisions[0].iso_code;
 				};
@@ -104,9 +113,8 @@ function getLocation(leadData) {
 					leadData.ServerCountry = data.traits.autonomous_system_organization;
 				};
 			}
-			if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
-				console.log("has own property? " + leadData.hasOwnProperty("Country"));
-				io.emit('lead notification', JSON.stringify({"countryKnown": (leadData.hasOwnProperty("Country") ? "yes" : "no"), "leadData": leadData}));
+			if (["United States", "United Kingdom", "Canada", "Ireland"].indexOf(leadData.Country) > -1) {
+				io.emit('lead notification', JSON.stringify(leadData));
 			};
 			console.log(leadData.Country);
 		});

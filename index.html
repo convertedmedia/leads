@@ -9,50 +9,32 @@
         <script>
             var socket = io();
             socket.on('lead notification', function(data){
-                var dataJson = JSON.parse(data);
-		console.log(dataJson);
-                var leadData = dataJson["leadData"];
-                var countryKnown = dataJson["countryKnown"];
-                if (Notification.permission === "granted") {
-                    doLeadNotification(leadData, countryKnown);
-                } else if (Notification.permission === "denied") {
-                    Notification.requestPermission(function (permission, leadData, countryKnown) {
-                        if (!('permission' in Notification)) {
-                            Notification.permission = permission;
-                        }
-                        if (permission === 'granted') {
-                            doLeadNotification(leadData, countryKnown);
-                        }
-                    });
-                };
-            });
-            socket.on(('failed notification'), function(){
-                if (Notification.permission === "granted") {
-                    doFailedNotification();
-                } else if (Notification.permission === "denied") {
-                    Notification.requestPermission(function (permission) {
-                        if (!('permission' in Notification)) {
-                            Notification.permission = permission;
-                        }
-                        if (permission === 'granted') {
-                            doFailedNotification();
-                        }
-                    });
-                };
-            });
-            function doLeadNotification(leadData, countryKnown) {
-		console.log("countryKnown: " + countryKnown);
-                var leadNotification = new Notification('New lead in ' + (countryKnown == 'yes' ? '' : 'unknown') + 'territory: ' + leadData.UID, {
-                    body :  'Lead Source: ' + leadData.LeadSource + '\n\
-                            Name: ' + leadData.Name + '\n\
+                var leadData = JSON.parse(data);
+                var title = leadData.gotLocation ? "New lead in territory" : "New lead in unknown territory";
+                var leadBody =  'Market: ' + leadData.Market + '\n\
+                            ' + (leadData.gotLead ? 'Name: ' + leadData.Name + '\n\
                             Company: ' + leadData.Company + '\n\
                             Email: ' + leadData.Email + '\n\
-                            TelephoneNumber: ' + leadData.Phone
-                });
+                            TelephoneNumber: ' + leadData.Phone : '');
+                doNotification(title, leadBody);
+            });
+            function doNotification(title, leadBody) {
+				if (!("Notification" in window)) {
+					alert("This browser does not support desktop notification");
+				} else if (Notification.permission === "granted") {
+					var leadNotification = new Notification(title, {
+						body: leadBody
+					});
+				} else if (Notification.permission !== 'denied') {
+					Notification.requestPermission(function (permission) {
+						if (permission === "granted") {
+							var leadNotification = new Notification(title, {
+								body: leadBody
+							});
+						};
+					});
+				};
             };
-            function doFailedNotification() {
-				var failedNotification = new Notification('Failed to fetch new lead');
-			};
         </script>
     </body>
 </html>
