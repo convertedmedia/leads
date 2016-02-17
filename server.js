@@ -2,7 +2,7 @@ var app = require('express')();
 var http = require('http').Server(app);
 var mailin = require('mailin');
 var request = require('requestretry');
-var xmlson = require('xmlson');
+var xmlson = Coffeescript.register('xmlson');
 var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000)
 var Notify = require('notifyjs');
 var io = require('socket.io')(http);
@@ -59,7 +59,7 @@ function getLead(UID, type){
         "query" : queryJson
       };
 	function myRetryStrategy(err, response) {
-		var leadsData = xmlson.toJSON body
+		var leadsData = xmlson.toJSON(body);
 		return err || leadsData["Leads"]["$"]["sentcount"] == 0;
 	}
     request({
@@ -67,7 +67,7 @@ function getLead(UID, type){
         method: "POST",
         form: payload
     }, function (error, response, body) {
-        var leadsData = xmlson.toJSON body
+        var leadsData = xmlson.toJSON(body)
         var leadData = leadsData["Leads"][0]["Lead"]
 	    for (var name in leadData) {
             if (leadData.hasOwnProperty(name)){
