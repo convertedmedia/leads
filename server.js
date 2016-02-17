@@ -1,8 +1,8 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var mailin = require('mailin');
-var request = require('request');
-var parseString = require('xml2js').parseString;
+var request = require('requestretry');
+var xmlson = require('xmlson');
 var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000)
 var Notify = require('notifyjs');
 var io = require('socket.io')(http);
@@ -34,7 +34,7 @@ mailin.on('message', function(connection, data, content) {
     console.log("UIDLocation: " + UIDLocation);
     var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
     var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
-    setTimeout(getLead(UID, type),10000);
+    getLead(UID, type)
 });
 
 //gets lead information
@@ -58,26 +58,23 @@ function getLead(UID, type){
         "take" : "1",
         "query" : queryJson
       };
+	function myRetryStrategy(err, response) {
+		var leadsData = xmlson.toJSON body
+		return err || leadsData["Leads"]["$"]["sentcount"] == 0;
+	}
     request({
         uri: "https://apidata.leadexec.net/",
         method: "POST",
         form: payload
     }, function (error, response, body) {
-        return parseString(body, function(err,result){
-	    try {
-	    	var leadData = result["Leads"]["Lead"][0];
-	    } catch(err) {
-		console.log(err);
-		console.log(payload);
-		console.log(result);
-	    };
+        var leadsData = xmlson.toJSON body
+        var leadData = leadsData["Leads"][0]["Lead"]
 	    for (var name in leadData) {
-                if (leadData.hasOwnProperty(name)){
-                    leadData[name] = leadData[name][0];
-                };
+            if (leadData.hasOwnProperty(name)){
+                leadData[name] = leadData[name][0];
             };
-            getLocation(leadData);
-	});
+        };
+        getLocation(leadData);
     });
 }
 
