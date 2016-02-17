@@ -87,8 +87,7 @@ function getLocation(leadData) {
            	} else if (typeof data.registered_country.names.en !== undefined && data.registered_country.names.en.length) {
                 leadData["Country"] = data.registered_country.names.en;
            	};
-           	console.log(JSON.stringify(data);
-           	if (typeof data.subdivisions !== undefined && typeof data.subdivisions[0] !== undefined &&  typeof data.subdivisions[0].iso_code !== undefined && data.subdivisions[0].iso_code.length) {
+           	if (typeof data.subdivisions !== undefined && typeof data.subdivisions.length > 0 &&  typeof data.subdivisions[0].iso_code !== undefined && data.subdivisions[0].iso_code.length) {
                	leadData.StateProvince = data.subdivisions[0].iso_code;
            	};
            	if (typeof data.traits.autonomous_system_organization !== undefined && data.traits.autonomous_system_organization.length) {
