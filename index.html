@@ -8,46 +8,31 @@
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
-            socket.on('lead notification', function(leadDataString){
-		console.log(leadDataString);
-                var leadData = JSON.parse(leadDataString);
+            socket.on('lead notification', function(data){
+                var dataJson = JSON.parse(data);
+                var leadData = dataJson["leadData"];
+                var countryKnown = JSON.parse["countryKnown"];
                 if (Notification.permission === "granted") {
                     doLeadNotification(leadData);
                 } else if (Notification.permission === "denied") {
-                    Notification.requestPermission(function (permission, leadData) {
+                    Notification.requestPermission(function (permission, leadData, countryKnown) {
                         if (!('permission' in Notification)) {
                             Notification.permission = permission;
                         }
                         if (permission === 'granted') {
-                            doLeadNotification(leadData);
+                            doLeadNotification(leadData, countryKnown);
                         }
                     });
                 };
             });
-            socket.on('unknown notification', function(leadDataString){
-		console.log(leadDataString);
-                var leadData = JSON.parse(leadDataString);
-                if (Notification.permission === "granted") {
-                    doUnknownNotification(leadData);
-                } else if (Notification.permission === "denied") {
-                    Notification.requestPermission(function (permission, leadData) {
-                        if (!('permission' in Notification)) {
-                            Notification.permission = permission;
-                        }
-                        if (permission === 'granted') {
-                            doUnknownNotification(leadData);
-                        }
-                    });
-                };
-            });
-            function doLeadNotification(leadData) {
-                var leadNotification = new Notification('New lead in territory: ' + leadData.UID, {
-                    body :  'UID: ' + leadData.UID + '\n\
+            function doLeadNotification(leadData, countryKnown) {
+                var leadNotification = new Notification('New lead in ' + (countryKnown ? '' : 'unknown') + 'territory: ' + leadData.UID, {
+                    body :  Lead Source: ' + leadData.LeadSource + '\n\
                             Name: ' + leadData.Name + '\n\
                             Company: ' + leadData.Company + '\n\
                             Email: ' + leadData.Email + '\n\
                             TelephoneNumber: ' + leadData.Phone + '\n\
-			    Lead Source: ' + leadData.LeadSource
+			    
                 });
             };
             function doUnknownNotification(leadData) {
