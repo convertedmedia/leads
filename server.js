@@ -62,7 +62,7 @@ function getLead(UID, type){
     function leadGetSuccess(err, response, body) {
 		var leadsData = parser.toJson(body, {object: true});
 		return err || leadsData["Leads"]["sentcount"] == 0;
-	}];
+	};
 	request({
 		method: "post",
 		uri: "https://apidata.leadexec.net/",
