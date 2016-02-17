@@ -7,8 +7,8 @@ var parser = require('xml2json');
 var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000);
 var io = require('socket.io')(http);
 
-RequestRetry.setMaxRetries(10);
-RequestRetry.setRetryDelay(3000);
+RequestRetry.setMaxRetries(12);
+RequestRetry.setRetryDelay(2500);
 
 var LIDs = {
     "ERP" : "1762",
@@ -66,10 +66,14 @@ function getLead(UID, type){
 	}];
 	requestRetry.setRetryConditions(retryConditions);
     requestRetry.post({uri: "https://apidata.leadexec.net/", formData: payload}, function (error, response, body) {
+        if (leadsData["Leads"]["sentcount"] == 0) {
+			console.log("too few tries");
+		} else {
+			console.log("Number of attempts: " + request.attempts);
+		};
         var leadsData = parser.toJson(body, {object: true});
         var leadData = leadsData["Leads"]["Lead"]
-	console.log("leadData: " + leadData);
-        getLocation(leadData);
+		getLocation(leadData);
     });
 }
 
