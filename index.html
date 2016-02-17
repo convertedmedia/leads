@@ -11,8 +11,6 @@
             socket.on('lead notification', function(data){
                 var dataJson = JSON.parse(data);
                 var leadData = dataJson["leadData"];
-                console.log(dataJson);
-                console.log(leadData);
                 var countryKnown = JSON.parse["countryKnown"];
                 if (Notification.permission === "granted") {
                     doLeadNotification(leadData);
