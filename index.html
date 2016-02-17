@@ -5,6 +5,7 @@
     </head>
     <body>
         <h1>Lead Manager</h1>
+        <button onclick="activateNotifications()">Activate notifications</button>
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
@@ -26,15 +27,21 @@
 						body: leadBody
 					});
 				} else if (Notification.permission !== 'denied') {
+					alert("Notifications not activated!");
+				};
+            };
+            function activateNotifications() {
+				if (!("Notification" in window)) {
+					alert("This browser does not support desktop notification");
+				} else if (Notification.permission === "granted") {
+					alert("Notifications already activated!");
+				} else if (Notification.permission !== 'denied') {
 					Notification.requestPermission(function (permission) {
 						if (permission === "granted") {
-							var leadNotification = new Notification(title, {
-								body: leadBody
-							});
+							alert("Notifications activated!");
 						};
 					});
 				};
-            };
         </script>
     </body>
 </html>

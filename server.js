@@ -82,7 +82,7 @@ function getLead(UID, type){
 			getLocation(leadData);
 		} else {
 			console.log("needed more attempts, response: " + leadsData);
-			io.emit('lead notification', JSON.stringify({"gotLead": false, "gotLocation": false, "UID": UID, "Market" = type}));
+			io.emit('lead notification', JSON.stringify({"gotLead": false, "gotLocation": false, "UID": UID, "Market" : type}));
 		}
     });
 }
