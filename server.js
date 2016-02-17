@@ -68,6 +68,7 @@ function getLead(UID, type){
     requestRetry.post({uri: "https://apidata.leadexec.net/", formData: payload}, function (error, response, body) {
         var leadsData = parser.toJson(body, {object: true});
         var leadData = leadsData["Leads"]["Lead"]
+	console.log("leadData: " + leadData);
         getLocation(leadData);
     });
 }
@@ -86,7 +87,7 @@ function getLocation(leadData) {
            	} else if (typeof data.registered_country.names.en !== undefined && data.registered_country.names.en.length) {
                 leadData["Country"] = data.registered_country.names.en;
            	};
-           	if (typeof data.subdivisions[0].iso_code !== undefined && data.subdivisions[0].iso_code.length) {
+           	if (typeof data.subdivisions !== undefined && typeof data.subdivisions[0] !== undefined && typeof data.subdivisions[0].iso_code !== undefined && data.subdivisions[0].iso_code.length) {
                	leadData.StateProvince = data.subdivisions[0].iso_code;
            	};
            	if (typeof data.traits.autonomous_system_organization !== undefined && data.traits.autonomous_system_organization.length) {
