@@ -66,6 +66,7 @@ function getLead(UID, type){
 	}];
 	requestRetry.setRetryConditions(retryConditions);
     requestRetry.post({uri: "https://apidata.leadexec.net/", formData: payload}, function (error, response, body) {
+		var leadsData = parser.toJson(body, {object: true});
         if (leadsData["Leads"]["sentcount"] == 0) {
 			console.log("too few tries");
 		} else {
