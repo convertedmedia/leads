@@ -11,6 +11,8 @@
             socket.on('lead notification', function(data){
                 var dataJson = JSON.parse(data);
                 var leadData = dataJson["leadData"];
+                console.log(dataJson);
+                console.log(leadData);
                 var countryKnown = JSON.parse["countryKnown"];
                 if (Notification.permission === "granted") {
                     doLeadNotification(leadData);
@@ -27,22 +29,11 @@
             });
             function doLeadNotification(leadData, countryKnown) {
                 var leadNotification = new Notification('New lead in ' + (countryKnown ? '' : 'unknown') + 'territory: ' + leadData.UID, {
-                    body :  Lead Source: ' + leadData.LeadSource + '\n\
+                    body :  'Lead Source: ' + leadData.LeadSource + '\n\
                             Name: ' + leadData.Name + '\n\
                             Company: ' + leadData.Company + '\n\
                             Email: ' + leadData.Email + '\n\
-                            TelephoneNumber: ' + leadData.Phone + '\n\
-			    
-                });
-            };
-            function doUnknownNotification(leadData) {
-                var leadNotification = new Notification('New lead in unkmown territory: ' + leadData.UID, {
-                    body :  'UID: ' + leadData.UID + '\n\
-                            Name: ' + leadData.Name + '\n\
-                            Company: ' + leadData.Company + '\n\
-                            Email: ' + leadData.Email + '\n\
-                            TelephoneNumber: ' + leadData.Phone + '\n\
-			    Lead Source: ' + leadData.LeadSource
+                            TelephoneNumber: ' + leadData.Phone
                 });
             };
         </script>
