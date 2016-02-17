@@ -1,11 +1,15 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var mailin = require('mailin');
-var request = require('requestretry');
-var xmlson = Coffeescript.register('xmlson');
+var request = require('request');
+var RequestRetry = require('node-request-retry');
+var parser = require('xml2json');
 var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000)
 var Notify = require('notifyjs');
 var io = require('socket.io')(http);
+
+RequestRetry.setMaxRetries(10);
+RequestRetry.setRetryDelay(4000);
 
 var LIDs = {
     "ERP" : "1762",
@@ -58,16 +62,15 @@ function getLead(UID, type){
         "take" : "1",
         "query" : queryJson
       };
-	function myRetryStrategy(err, response) {
-		var leadsData = xmlson.toJSON(body);
-		return err || leadsData["Leads"]["$"]["sentcount"] == 0;
-	}
-    request({
-        uri: "https://apidata.leadexec.net/",
-        method: "POST",
-        form: payload
-    }, function (error, response, body) {
-        var leadsData = xmlson.toJSON(body)
+    var requestRetry = new RequestRetry();
+	var retryConditions = [function (response, body) {
+		var leadsData = parser.toJSON(body, {object: true};
+		console.log(leadsData);
+		return leadsData["Leads"]["$"]["sentcount"] == 0;
+	}];
+	requestRetry.setRetryCodes(retryConditions);
+    requestRetry.post("https://apidata.leadexec.net/", payload, function (error, response, body) {
+        var leadsData = parser.toJSON(body, {object: true});
         var leadData = leadsData["Leads"][0]["Lead"]
 	    for (var name in leadData) {
             if (leadData.hasOwnProperty(name)){
