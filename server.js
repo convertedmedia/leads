@@ -70,7 +70,7 @@ function getLead(UID, type){
         if (leadsData["Leads"]["sentcount"] == 0) {
 			console.log("too few tries");
 		} else {
-			console.log("Number of attempts: " + request.attempts);
+			console.log("Number of attempts: " + response.attempts);
 		};
         var leadsData = parser.toJson(body, {object: true});
         var leadData = leadsData["Leads"]["Lead"]
