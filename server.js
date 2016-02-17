@@ -32,12 +32,9 @@ mailin.start({
 // Handle email
 mailin.on('message', function(connection, data, content) {
     var emailContent = data.text;
-    console.log(data.text);
     var UIDLocation = emailContent.search("Lead ") + 5;
-    console.log("UIDLocation: " + UIDLocation);
     var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
     var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
-    getLead(UID, type)
 });
 
 //gets lead information
@@ -64,7 +61,6 @@ function getLead(UID, type){
     var requestRetry = new RequestRetry();
 	var retryConditions = [function (response, body) {
 		var leadsData = parser.toJson(body, {object: true});
-		console.log(leadsData);
 		return leadsData["Leads"]["sentcount"] == 0;
 	}];
 	requestRetry.setRetryConditions(retryConditions);
@@ -98,9 +94,8 @@ function getLocation(leadData) {
 		}
 		if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
 			io.emit('lead notification', JSON.stringify({"countryKnown": leadData.hasOwnProperty("Country"), "leadData": leadData}));
-	    } else {
-            console.log(leadData.Country);
-        };
+	    };
+        console.log(leadData.Country);
     });
 };
 /*
