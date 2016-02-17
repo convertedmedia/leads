@@ -50,7 +50,8 @@ function getLead(UID, type){
     var query = {
         "UID" : parseInt(UID)
     };
-    var queryJson = JSON.stringify(query);
+	console.log(UID);
+	    var queryJson = JSON.stringify(query);
     var payload = 
       {
         "key" : "4BE5B85E834B62AFBCC04E6AA7B36518CBA79A8B316917E3D660D7C535BD8AE5",
@@ -62,15 +63,17 @@ function getLead(UID, type){
         "take" : "1",
         "query" : queryJson
       };
+console.log(payload);
     var requestRetry = new RequestRetry();
 	var retryConditions = [function (response, body) {
-		var leadsData = parser.toJSON(body, {object: true};
+		var leadsData = parser.toJson(body, {object: true});
 		console.log(leadsData);
 		return leadsData["Leads"]["$"]["sentcount"] == 0;
 	}];
-	requestRetry.setRetryCodes(retryConditions);
-    requestRetry.post("https://apidata.leadexec.net/", payload, function (error, response, body) {
-        var leadsData = parser.toJSON(body, {object: true});
+	requestRetry.setRetryConditions(retryConditions);
+    requestRetry.post({uri: "https://apidata.leadexec.net/", formData: payload}, function (error, response, body) {
+        var leadsData = parser.toJson(body, {object: true});
+console.log(leadsData);
         var leadData = leadsData["Leads"][0]["Lead"]
 	    for (var name in leadData) {
             if (leadData.hasOwnProperty(name)){

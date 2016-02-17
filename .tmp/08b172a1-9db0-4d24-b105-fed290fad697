@@ -1,0 +1,42 @@
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=sendgrid.me; 
+	h=mime-version:from:to:reply-to:subject:content-type:content-transfer-encoding; 
+	s=smtpapi; bh=SKqyiFnmUGu5N6WaQ+RxsOFvbEc=; b=TYiz2PuIkZLKEhIb4d
+	Y68GdAlANOYZgC1Di3lX91kKfvXZJTWQYmHIen9u1JgvlTjrAiZiJ4+W1DVfSwkF
+	GtscZPAw7LbWsDJMpp6GVrwNapnW36rCPwiVoQNO5D4batrqm7Te/4skS188aWD0
+	LD1CkED4s01GP6ejFw8/RXIWc=
+Received: by filter0094p1las1.sendgrid.net with SMTP id filter0094p1las1.19752.56C3832939
+        2016-02-16 20:14:33.6541406 +0000 UTC
+Received: from RD000D3A30EE35 (unknown [104.40.94.41])
+	by ismtpd0004p1las1.sendgrid.net (SG) with ESMTP id OVsjNuCKThiCTxB-bcLL3A
+	for <leads@leads.conmedleads.co.uk>; Tue, 16 Feb 2016 20:14:33.774 +0000 (UTC)
+MIME-Version: 1.0
+From: "LeadExec System Notifications" <notifications@clickpointsoftware.com>
+To: leads@leads.conmedleads.co.uk
+Reply-To: support@clickpointsoftware.com
+Date: 16 Feb 2016 12:14:33 -0800
+Subject: You have received a new system notification - EHRinpractice lead
+ notification
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
+Message-ID: <OVsjNuCKThiCTxB-bcLL3A@ismtpd0004p1las1.sendgrid.net>
+X-SG-EID: SR0RHDIAFjPxANri9HgUrCgfKu/9Qmco/QtCRhSW10BX4DwZz1xd7JA4qkCOOutLAcP9LP/3gQ3Iul
+ mDXunlMtGiOxyreOVdO5zCXJIOqc/KDaf5PQWyy7ddF2Tg8/mbLNuDA8RA4MdLZOqR2mFksKD4Op0k
+ KLsVrs0sJ2iRtjonWthhDaonGlgbgcP4FdH+ixSzXLlUfrjXGOsPKIChFPIUucMelZVD8jKnNKoRhh
+ F9P5Fyguit/4718Dg3TTo17DrK1j3ZOMy36IYEzQnp1Q==
+
+<div style=3D"font-family: tahoma;">You have received a new system notifica=
+tion.<br><br>Notifiation Name: EHRinpractice lead notification<br><br>Notif=
+ication Type: QC Bin Notification<br><br>Notification Details:<br><br><b>Le=
+ad 35271234 from EHRinPractice has been put in the quality control bin.</b>=
+<br><br>This email is being sent from an unmonitored email box, please do n=
+ot reply to this email.</div>
+
+<img src=3D"http://noreply.securenotifier.com/wf/open?upn=3DEWms-2F9NU9LOpE=
+Bzih6i9yetntDpmWxCPnItO3CUTJ6obUIbdTw-2FTjnRpqUP1MZn2tBxtk02pivdJ-2BicLRrNh=
+nnFIQ6wM9Lqtt-2BtKuOBI9qe03NcL6jFTn1XIT6pKQCtQrZTMcfc-2BeXy7E-2FkfiinPSf9wz=
+xlfsJ7mB1QvrUJKv5lxb-2FmeXpXZOPBqGPvUPDg7L2i-2B5W7W0LH-2F0F-2FyijjVYZEgDjfD=
+9a5s8tE4UMY-2FVaY-3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=
+=3D"height:1px !important;width:1px !important;border-width:0 !important;ma=
+rgin-top:0 !important;margin-bottom:0 !important;margin-right:0 !important;=
+margin-left:0 !important;padding-top:0 !important;padding-bottom:0 !importa=
+nt;padding-right:0 !important;padding-left:0 !important;"/>
