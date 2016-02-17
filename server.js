@@ -35,6 +35,7 @@ mailin.on('message', function(connection, data, content) {
     var UIDLocation = emailContent.search("Lead ") + 5;
     var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
     var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
+	getLead(UID, type);
 });
 
 //gets lead information
