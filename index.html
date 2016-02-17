@@ -26,7 +26,7 @@
                 };
             });
             function doLeadNotification(leadData, countryKnown) {
-                var leadNotification = new Notification('New lead in ' + (countryKnown ? '' : 'unknown') + 'territory: ' + leadData.UID, {
+                var leadNotification = new Notification('New lead in ' + (countryKnown == 'yes' ? '' : 'unknown') + 'territory: ' + leadData.UID, {
                     body :  'Lead Source: ' + leadData.LeadSource + '\n\
                             Name: ' + leadData.Name + '\n\
                             Company: ' + leadData.Company + '\n\

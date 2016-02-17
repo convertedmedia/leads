@@ -97,7 +97,7 @@ function getLocation(leadData) {
 			};
 		}
 		if (["United States", "United Kingdom", "Canada"].indexOf(leadData.Country) > -1) {
-			io.emit('lead notification', JSON.stringify({"countryKnown": leadData.hasOwnProperty("Country"), "leadData": leadData}));
+			io.emit('lead notification', JSON.stringify({"countryKnown": (leadData.hasOwnProperty("Country") ? "yes" : "no"), "leadData": leadData}));
 	    };
         console.log(leadData.Country);
     });
