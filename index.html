@@ -11,12 +11,12 @@
             var socket = io();
             socket.on('lead notification', function(data){
                 var leadData = JSON.parse(data);
-                var title = leadData.gotLocation ? "New lead in territory" : "New lead in unknown territory";
-                var leadBody =  'Market: ' + leadData.Market + '\n\
+                var title = "New " + leadData.Market + (leadData.gotLocation ? " lead in territory" : " lead in unknown territory ") + leadData.UID;
+                var leadBody =  'Added: ' + leadData.DateAdded + '\n\
                             ' + (leadData.gotLead ? 'Name: ' + leadData.Name + '\n\
+                            Phone: ' + (leadData.PhoneIsCell ? 'Cell-' : '') + leadData.PhoneValid + '-' + leadData.Phone : '') + '\n\
                             Company: ' + leadData.Company + '\n\
-                            Email: ' + leadData.Email + '\n\
-                            Phone: ' (leadData.PhoneIsCell ? 'Cell-' : '') + leadData.PhoneValid + '-' + leadData.Phone : '');
+                            Email: ' + leadData.Email;
                 doNotification(title, leadBody);
             });
             function doNotification(title, leadBody) {

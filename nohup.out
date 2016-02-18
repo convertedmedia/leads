@@ -267,3 +267,52 @@ info: 8fed3363-5b40-4ea1-9294-c4e3c4ae8f2d End processing message, deleted .tmp/
 Number of attempts: undefined
 needed more attempts, response: [object Object]
 a user connected
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+a user connected
+a user connected
+a user connected
+info: e061f602-2347-45de-a5d1-c9b8cb0b70c8 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: e061f602-2347-45de-a5d1-c9b8cb0b70c8 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: e061f602-2347-45de-a5d1-c9b8cb0b70c8 End processing message, deleted .tmp/e061f602-2347-45de-a5d1-c9b8cb0b70c8
+The number of request attempts: 1
+Philippines
+info: eebe16cb-5643-415c-b631-b8c5e77e7b8e Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: eebe16cb-5643-415c-b631-b8c5e77e7b8e Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: eebe16cb-5643-415c-b631-b8c5e77e7b8e End processing message, deleted .tmp/eebe16cb-5643-415c-b631-b8c5e77e7b8e
+The number of request attempts: 1
+India
+info: 38963e9f-449e-46e8-aaaa-ee3740a5e089 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 38963e9f-449e-46e8-aaaa-ee3740a5e089 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 38963e9f-449e-46e8-aaaa-ee3740a5e089 End processing message, deleted .tmp/38963e9f-449e-46e8-aaaa-ee3740a5e089
+The number of request attempts: 1
+Ireland
+a user connected
+info: 2cee3653-fc71-4570-8525-9ca40d59fafd Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 2cee3653-fc71-4570-8525-9ca40d59fafd Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 2cee3653-fc71-4570-8525-9ca40d59fafd End processing message, deleted .tmp/2cee3653-fc71-4570-8525-9ca40d59fafd
+The number of request attempts: 1
+Spain
+info: dcdedcc3-d679-4329-8cf9-793b2f5d26d1 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: dcdedcc3-d679-4329-8cf9-793b2f5d26d1 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: dcdedcc3-d679-4329-8cf9-793b2f5d26d1 End processing message, deleted .tmp/dcdedcc3-d679-4329-8cf9-793b2f5d26d1
+The number of request attempts: 1
+Spain
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+info: fa4ee8d8-ec14-4317-8472-fee5672b5f29 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: fa4ee8d8-ec14-4317-8472-fee5672b5f29 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1455833373017 ERP
+info: fa4ee8d8-ec14-4317-8472-fee5672b5f29 End processing message, deleted .tmp/fa4ee8d8-ec14-4317-8472-fee5672b5f29
+The number of request attempts: 1
+United States
+info: 14c83497-50aa-4bdb-890a-3a483b516089 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 14c83497-50aa-4bdb-890a-3a483b516089 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1455833421331 HRMS
+info: 14c83497-50aa-4bdb-890a-3a483b516089 End processing message, deleted .tmp/14c83497-50aa-4bdb-890a-3a483b516089
+The number of request attempts: 1
+United States
+a user connected
+a user connected

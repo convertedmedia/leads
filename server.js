@@ -36,7 +36,8 @@ mailin.on('message', function(connection, data, content) {
 });
 
 //gets lead information
-function getLead(UID, type){
+function getLead(UID, type) {
+    console.log(Date.now() + " " + type);
     var LID = LIDs[type];
     var today = new Date();
     var yesterday = new Date(today);
@@ -68,8 +69,8 @@ function getLead(UID, type){
 		method: "post",
 		uri: "https://apidata.leadexec.net/",
 		formData: payload,
-		maxAttempts: 10,
-		retryDelay: 2000,
+		maxAttempts: 12,
+		retryDelay: 1500,
 		retryStrategy: leadGetSuccess
 	}, function (error, response, body) {
 		if (response) {
@@ -133,7 +134,7 @@ function validatePhone(leadData) {
 	var phoneNumber = leadData.TelephoneNumber;
 	phoneNumber = validator.whitelist(phoneNumber, '0123456789x');
 	phoneNumber = phoneNumber.split('x')[0];
-	if (phoneNumber.substring(0,1) = '1') {
+	if (phoneNumber.substring(0,1) == '1') {
 		phoneNumber = phoneNumber.substring(1);
 	};
 	phoneNumber = phoneNumber.substring(0,10);
@@ -156,8 +157,8 @@ function validatePhone(leadData) {
 		}, function (error, response, body) {
 			if (response) {
 				var bodyJSON = parser.toJson(body, {object: true});
-				leadData.PhoneValid = bodyJSON.status;
-				leadData.PhoneIsCell = bodyJSON.iscell == 'Y'
+				leadData.PhoneValid = bodyJSON.response.status;
+				leadData.PhoneIsCell = bodyJSON.response.iscell == 'Y'
 			}
 			io.emit('lead notification', JSON.stringify(leadData));
 		});
