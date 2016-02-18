@@ -133,7 +133,7 @@ function validatePhone(leadData) {
 		phoneNumber = phoneNumber.substring(1);
 	};
 	phoneNumber = phoneNumber.substring(0,10);
-	if ([0,1]indexOf(phoneNumber.substring(0,1)) > -1 || phoneNumber.length < 10) {
+	if ([0,1].indexOf(phoneNumber.substring(0,1)) > -1 || phoneNumber.length < 10) {
 		leadData.PhoneValid = 'bad'
 		io.emit('lead notification', JSON.stringify(leadData));
 		console.log(leadData.Country + 'phone invalid');
@@ -156,7 +156,7 @@ function validatePhone(leadData) {
 				leadData.PhoneIsCell = bodyJSON.iscell == 'Y'
 			}
 			io.emit('lead notification', JSON.stringify(leadData));
-		};
+		});
 	};
 }
 	
