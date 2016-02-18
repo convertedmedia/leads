@@ -117,7 +117,9 @@ function getLocation(leadData) {
 			if ("United States" == leadData.Country) {
 				validatePhone(leadData);
 			} else {
-				io.emit('lead notification', JSON.stringify(leadData));
+				if (["United Kingdon", "Canada", "Ireland"].indexOf(leadData.Country) > -1) {
+					io.emit('lead notification', JSON.stringify(leadData));
+				}
 			}
 		});
 	} catch (err) {

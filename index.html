@@ -3,9 +3,9 @@
     <head>
         <title>Lead Manager</title>
     </head>
-    <body>
+    <body onload="showNotificationBtn()">
         <h1>Lead Manager</h1>
-        <button onclick="activateNotifications()">Activate notifications</button>
+        <button onclick="activateNotifications()" style="display: none;" id="activateNotificationsBtn">Activate notifications</button>
         <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
@@ -16,7 +16,7 @@
                             ' + (leadData.gotLead ? 'Name: ' + leadData.Name + '\n\
                             Company: ' + leadData.Company + '\n\
                             Email: ' + leadData.Email + '\n\
-                            Phone: ' (leadData.phoneIsCell ? 'Cell-' : '') + leadData.phoneValid + '-' + leadData.Phone : '');
+                            Phone: ' (leadData.PhoneIsCell ? 'Cell-' : '') + leadData.PhoneValid + '-' + leadData.Phone : '');
                 doNotification(title, leadBody);
             });
             function doNotification(title, leadBody) {
@@ -38,11 +38,16 @@
 				} else if (Notification.permission !== 'denied') {
 					Notification.requestPermission(function (permission) {
 						if (permission === "granted") {
+							document.getElementById("activateNotificationsBtn").setAttribute("style", "display: none;");
 							alert("Notifications activated!");
 						};
 					});
 				};
-	    };
+			};
+			function showNotificationBtn() {
+				if ("Notification" in window && Notification.permission!== 'denied') {
+					document.getElementById("activateNotificationsBtn").setAttribute("style", "");
+				}
         </script>
     </body>
 </html>
