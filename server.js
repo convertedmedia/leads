@@ -119,7 +119,7 @@ function getLocation(leadData) {
 			if ("United States" == leadData.Country) {
 				validatePhone(leadData);
 			} else {
-				if (["United Kingdon", "Canada", "Ireland"].indexOf(leadData.Country) > -1) {
+				if (["United Kingdon", "Canada", "Ireland"].indexOf(leadData.Country) > -1 || !(leadData.hasOwnProperty("Country")) {
 					io.emit('lead notification', JSON.stringify(leadData));
 				}
 			}
