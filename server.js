@@ -101,9 +101,11 @@ function getLocation(leadData) {
 				if (typeof data.country !== undefined && typeof data.country.names.en !== undefined && data.country.names.en.length) {
 					leadData["Country"] = data.country.names.en;
 					leadData.gotLocation = true;
+					console.log(leadData.Country);
 				} else if (typeof data.registered_country.names.en !== undefined && data.registered_country.names.en.length) {
 					leadData["Country"] = data.registered_country.names.en;
 					leadData.gotLocation = true;
+					console.log(leadData.Country);
 				} else {
 					leadData.gotLocation = false;
 				}
@@ -129,7 +131,7 @@ function getLocation(leadData) {
 
 function validatePhone(leadData) {
 	var phoneNumber = leadData.TelephoneNumber;
-	phoneNumber = validator.whitespace(phone, '0123456789x');
+	phoneNumber = validator.whitespace(phoneNumber, '0123456789x');
 	phoneNumber = phoneNumber.split('x')[0];
 	if (phoneNumber.substring(0,1) = '1') {
 		phoneNumber = phoneNumber.substring(1);
