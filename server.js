@@ -68,8 +68,8 @@ function getLead(UID, type){
 		method: "post",
 		uri: "https://apidata.leadexec.net/",
 		formData: payload,
-		maxAttempts: 10,
-		retryDelay: 2000,
+		maxAttempts: 20,
+		retryDelay: 2500,
 		retryStrategy: leadGetSuccess
 	}, function (error, response, body) {
 		if (response) {
@@ -131,7 +131,7 @@ function getLocation(leadData) {
 
 function validatePhone(leadData) {
 	var phoneNumber = leadData.TelephoneNumber;
-	phoneNumber = validator.whitespace(phoneNumber, '0123456789x');
+	phoneNumber = validator.whitelist(phoneNumber, '0123456789x');
 	phoneNumber = phoneNumber.split('x')[0];
 	if (phoneNumber.substring(0,1) = '1') {
 		phoneNumber = phoneNumber.substring(1);
