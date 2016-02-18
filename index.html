@@ -16,7 +16,7 @@
                             ' + (leadData.gotLead ? 'Name: ' + leadData.Name + '\n\
                             Company: ' + leadData.Company + '\n\
                             Email: ' + leadData.Email + '\n\
-                            TelephoneNumber: ' + leadData.Phone : '');
+                            Phone: ' (leadData.phoneIsCell ? 'Cell-' : '') + leadData.phoneValid + '-' + leadData.Phone : '');
                 doNotification(title, leadBody);
             });
             function doNotification(title, leadBody) {

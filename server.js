@@ -5,6 +5,7 @@ var request = require('requestretry');
 var parser = require('xml2json');
 var geo = require ('geoip2ws') (105273, "yIr8LibI16CA", 'city', 2000);
 var io = require('socket.io')(http);
+var validator = require('validator');
 
 var LIDs = {
     "ERP" : "1762",
@@ -113,59 +114,49 @@ function getLocation(leadData) {
 					leadData.ServerCountry = data.traits.autonomous_system_organization;
 				};
 			}
-			if (["United States", "United Kingdom", "Canada", "Ireland"].indexOf(leadData.Country) > -1) {
+			if ("United States" == leadData.Country) {
+				validatePhone(leadData);
+			} else {
 				io.emit('lead notification', JSON.stringify(leadData));
-			};
-			console.log(leadData.Country);
+			}
 		});
 	} catch (err) {
 		console.log(err);
 	};
 };
-/*
- var success = true
-      var url = "https://geoip.maxmind.com/geoip/v2.1/city/" + ip
-      var headers = {
-        'Authorization' : "Basic " + Utilities.base64Encode("105273:yIr8LibI16CA")
-      }
-      var options = {
-        'method' : 'get',
-        'headers' : headers,
-        "muteHttpExceptions" : true
-      }
-      var response = UrlFetchApp.fetch(url, options);
-      var json =  response.getContentText();
-      var data = JSON.parse(json);
-      trials++;
-    } catch(error) {
-      success = false;
-      trials++;
-    }
-  } while ((success == false || typeof data == "undefined") && trials < 3);
-  if (success == true) {
-    try {
-      var region = data["subdivisions"][0]["names"]["en"]
-    } catch(error) {
-      var region = "";
-    }
-    try {
-      var org = data["traits"]["autonomous_system_organization"]
-    } catch(error) {
-      var org = "";
-    }
-    try {
-      var state = data["subdivisions"][0]["iso_code"]
-    } catch(error) {
-      var state = "";
-    }
-    try {
-      var answer = [data["country"]["names"]["en"],region,org];
-    } catch(error) {
-      try {
-        var country = data["registered_country"][0]["names"]["en"]
-      } catch(error) {
-        var country = "";
-      }
-      var answer = [country, region, org]
-    }
-    */
+
+function validatePhone(leadData) {
+	var phoneNumber = leadData.TelephoneNumber;
+	phoneNumber = validator.whitespace(phone, '0123456789x');
+	phoneNumber = phoneNumber.split('x')[0];
+	if (phoneNumber.substring(0,1) = '1') {
+		phoneNumber = phoneNumber.substring(1);
+	};
+	phoneNumber = phoneNumber.substring(0,10);
+	if ([0,1]indexOf(phoneNumber.substring(0,1)) > -1 || phoneNumber.length < 10) {
+		leadData.PhoneValid = 'bad'
+		io.emit('lead notification', JSON.stringify(leadData));
+		console.log(leadData.Country + 'phone invalid');
+	} else {
+		var payload = {
+			token : '723CB24B-85FC-0681-D441-F752993151EA',
+			phone : phoneNumber
+		};
+		request({
+			method: "post",
+			uri: "https://api.realvalidation.com/rpvWebService/RealPhoneValidationTurbo.php",
+			formData: payload,
+			maxAttempts: 5,
+			retryDelay: 2000,
+			retryStrategy: request.RetryStrategies.HTTPOrNetworkError
+		}, function (error, response, body) {
+			if (response) {
+				var bodyJSON = parser.toJson(body, {object: true});
+				leadData.PhoneValid = bodyJSON.status;
+				leadData.PhoneIsCell = bodyJSON.iscell == 'Y'
+			}
+			io.emit('lead notification', JSON.stringify(leadData));
+		};
+	};
+}
+	
