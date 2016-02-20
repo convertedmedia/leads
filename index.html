@@ -2,11 +2,39 @@
 <html>
     <head>
         <title>Lead Manager</title>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
     </head>
     <body onload="showNotificationBtn()">
         <h1>Lead Manager</h1>
+	<div id="bottomPanel">
+		<table id="history">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Company</td>
+					<td>Market</td>
+					<td>Country</td>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+	<style>
+		#bottomPanel {
+			height: 30%;
+			position: fixed;
+			bottom: 0%;
+			width: 100%;
+			border-style: solid;
+			border-width: thin;
+		}
+	</style>
         <button onclick="activateNotifications()" style="display: none;" id="activateNotificationsBtn">Activate notifications</button>
-        <script src="/socket.io/socket.io.js"></script>
         <script>
             var socket = io();
             socket.on('lead notification', function(data){
@@ -18,6 +46,8 @@
                             Company: ' + leadData.Company + '\n\
                             Email: ' + leadData.Email;
                 doNotification(title, leadBody);
+		var table = $('#history').DataTable();
+		table.row.add(leadData).draw();
             });
             function doNotification(title, leadBody) {
 				if (!("Notification" in window)) {
@@ -49,6 +79,9 @@
 					document.getElementById("activateNotificationsBtn").setAttribute("style", "");
 				};
 			};
+		$(document).ready( function() {
+			$('#history').DataTable();
+		});
         </script>
     </body>
 </html>
