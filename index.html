@@ -45,9 +45,11 @@
                             Phone: ' + (leadData.PhoneIsCell ? 'Cell-' : '') + leadData.PhoneValid + '-' + leadData.Phone : '') + '\n\
                             Company: ' + leadData.Company + '\n\
                             Email: ' + leadData.Email;
-                doNotification(title, leadBody);
-		var table = $('#history').DataTable();
-		table.row.add(leadData).draw();
+                console.log("did notification")
+				doNotification(title, leadBody);
+				console.log("add row");
+				var table = $('#history').DataTable();
+				table.row.add(leadData).draw();
             });
             function doNotification(title, leadBody) {
 				if (!("Notification" in window)) {
