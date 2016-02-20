@@ -119,8 +119,9 @@ function getLocation(leadData) {
 			}
 			if ("United States" == leadData.Country) {
 				validatePhone(leadData);
-			} else 	if (["United Kingdon", "Canada", "Ireland"].indexOf(leadData.Country) > -1 || !(leadData.hasOwnProperty("Country"))) {
+			} else 	if (["United Kingdom", "Canada", "Ireland"].indexOf(leadData.Country) > -1 || !(leadData.hasOwnProperty("Country"))) {
 				io.emit('lead notification', JSON.stringify(leadData));
+				console.log("sent notification");
 			};
 		});
 	} catch (err) {
@@ -159,6 +160,7 @@ function validatePhone(leadData) {
 				leadData.PhoneIsCell = bodyJSON.response.iscell == 'Y'
 			}
 			io.emit('lead notification', JSON.stringify(leadData));
+			console.log("sent notification");
 		});
 	};
 }
