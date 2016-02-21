@@ -95,7 +95,15 @@
 				};
 			};
 		$(document).ready( function() {
-			$('#history').DataTable();
+			var columns = $('#history thead:first').children('td').map(function() {
+				return {
+					"data" : this.attr("datasource").length > 0 ? this.attr("datasource") : this.innerText
+				};
+			});
+			console.log(columns);
+			$('#history').DataTable( {
+				"columns": columns
+			});
 		});
         </script>
     </body>
