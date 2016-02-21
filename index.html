@@ -49,7 +49,7 @@
 				doNotification(title, leadBody);
 				console.log("add row");
 				var dataTable = $('#history').DataTable();
-				var columns = document.getElementById("history").getElementsByTagName("thead")[0].getElementsByTagName("td");
+				/*var columns = document.getElementById("history").getElementsByTagName("thead")[0].getElementsByTagName("td");
 				var rowArray = []
 				for (var i = 0; i < columns.length; i++) {
 					var column = columns[i].innerText
@@ -61,8 +61,8 @@
 					}
 				}
 				console.log(leadData);
-				console.log(rowArray);
-				dataTable.row.add(rowArray).draw();
+				console.log(rowArray);*/
+				dataTable.row.add(leadData).draw();
             });
             function doNotification(title, leadBody) {
 				if (!("Notification" in window)) {
