@@ -98,9 +98,9 @@
 			var columns = [];
 			$('#history thead:first td').each(function() {
 				return {
-					"data" : (this.hasAttribute ? this.attr("datasource") : this.innerText)
+					"data" : (this.hasAttribute ? $(this).attr("datasource") : this.innerText)
 				};
-			});
+			}).get();
 			console.log(columns);
 			$('#history').DataTable( {
 				"columns": columns
