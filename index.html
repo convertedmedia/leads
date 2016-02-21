@@ -95,10 +95,15 @@
 				};
 			};
 		$(document).ready( function() {
-			var columns = [];
-			$('#history thead:first td').each(function() {
-				return {
-					"data" : (this.hasAttribute ? $(this).attr("datasource") : this.innerText)
+			var columns = $('#history thead:first td').map(function() {
+				if ($(this).attr("datasource") !== undefined && $(this).attr("datasource") !== false) {
+					return {
+						"data" : $(this).attr("datasource")
+					};
+				} else {
+					return {
+						"data" : $(this).text();
+					}
 				};
 			}).get();
 			console.log(columns);
