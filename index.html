@@ -48,8 +48,17 @@
                 console.log("did notification")
 				doNotification(title, leadBody);
 				console.log("add row");
-				var table = $('#history').DataTable();
-				table.row.add(leadData).draw();
+				var dataTable = $('#history').DataTable();
+				var columns = $('#history').getElementsByTagName("td");
+				var rowArray = []
+				for (column in columns) {
+					if (leadData.hasOwnProperty(column.innerText)) {
+						rowArray.push(leadData[column.innerText]);
+					} else {
+						rowArray.push("");
+					}
+				}
+				table.row.add(rowArray).draw();
             });
             function doNotification(title, leadBody) {
 				if (!("Notification" in window)) {
