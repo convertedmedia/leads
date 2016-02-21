@@ -14,10 +14,12 @@
 		<table id="history">
 			<thead>
 				<tr>
+					<td datasource="DateAdded">Date</td>
+					<td>Country</td>
+					<td>Market</td>
 					<td>Name</td>
 					<td>Company</td>
-					<td>Market</td>
-					<td>Country</td>
+					<td datasource="TelephoneNumber">Phone</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -49,19 +51,6 @@
 				doNotification(title, leadBody);
 				console.log("add row");
 				var dataTable = $('#history').DataTable();
-				/*var columns = document.getElementById("history").getElementsByTagName("thead")[0].getElementsByTagName("td");
-				var rowArray = []
-				for (var i = 0; i < columns.length; i++) {
-					var column = columns[i].innerText
-					console.log(column);
-					if (leadData.hasOwnProperty(column)) {
-						rowArray.push(leadData[column]);
-					} else {
-						rowArray.push("");
-					}
-				}
-				console.log(leadData);
-				console.log(rowArray);*/
 				console.log(leadData);
 				dataTable.row.add(leadData).draw();
             });
