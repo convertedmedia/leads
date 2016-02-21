@@ -42,6 +42,10 @@
         <button onclick="activateNotifications()" style="display: none;" id="activateNotificationsBtn">Activate notifications</button>
         <script>
             var socket = io();
+             $(window).resize(function() {
+				clearTimeout(window.refresh_size);
+				window.refresh_size = setTimeout(function() { $('#history').resize(); }, 250);
+			});
             socket.on('lead notification', function(data){
                 var leadData = JSON.parse(data);
                 var title = "New " + leadData.Market + (leadData.gotLocation ? " lead in territory" : " lead in unknown territory ") + leadData.UID;
@@ -56,7 +60,7 @@
 				var dataTable = $('#history').DataTable();
 				console.log(leadData);
 				dataTable.row.add(leadData).draw();
-				dataTable.columns.adjust().draw();
+				dataTable.resize();
             });
             function doNotification(title, leadBody) {
 				if (!("Notification" in window)) {
