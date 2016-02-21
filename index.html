@@ -49,12 +49,13 @@
 				doNotification(title, leadBody);
 				console.log("add row");
 				var dataTable = $('#history').DataTable();
-				var columns = document.getElementById("history").getElementsByTagName("td");
+				var columns = document.getElementById("history").getElementsByTagName("thead")[0].getElementsByTagName("td");
 				var rowArray = []
-				for (column in columns) {
-					console.log(column.innerText);
-					if (leadData.hasOwnProperty(column.innerText)) {
-						rowArray.push(leadData[column.innerText]);
+				for (var i = 0; i < columns.length; i++) {
+					var column = columns[i].innerText
+					console.log(column);
+					if (leadData.hasOwnProperty(column)) {
+						rowArray.push(leadData[column]);
 					} else {
 						rowArray.push("");
 					}
