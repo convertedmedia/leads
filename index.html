@@ -49,7 +49,7 @@
 				doNotification(title, leadBody);
 				console.log("add row");
 				var dataTable = $('#history').DataTable();
-				var columns = document.getElementByID("history").getElementsByTagName("td");
+				var columns = document.getElementById("history").getElementsByTagName("td");
 				var rowArray = []
 				for (column in columns) {
 					if (leadData.hasOwnProperty(column.innerText)) {
