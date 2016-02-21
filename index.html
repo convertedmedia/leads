@@ -52,13 +52,16 @@
 				var columns = document.getElementById("history").getElementsByTagName("td");
 				var rowArray = []
 				for (column in columns) {
+					console.log(column.innerText);
 					if (leadData.hasOwnProperty(column.innerText)) {
 						rowArray.push(leadData[column.innerText]);
 					} else {
 						rowArray.push("");
 					}
 				}
-				table.row.add(rowArray).draw();
+				console.log(leadData);
+				console.log(rowArray);
+				dataTable.row.add(rowArray).draw();
             });
             function doNotification(title, leadBody) {
 				if (!("Notification" in window)) {
