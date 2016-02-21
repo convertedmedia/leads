@@ -53,6 +53,7 @@
 				var dataTable = $('#history').DataTable();
 				console.log(leadData);
 				dataTable.row.add(leadData).draw();
+				dataTable.columns.adjust().draw();
             });
             function doNotification(title, leadBody) {
 				if (!("Notification" in window)) {
