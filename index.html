@@ -97,9 +97,8 @@
 		$(document).ready( function() {
 			var columns = [];
 			$('#history thead:first td').each(function() {
-				var $this = $(this);
 				return {
-					"data" : ($this.hasAttribute ? $this.attr("datasource") : this.innerText)
+					"data" : (this.hasAttribute ? this.attr("datasource") : this.innerText)
 				};
 			});
 			console.log(columns);
