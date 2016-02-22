@@ -20,6 +20,7 @@
 					<td>Name</td>
 					<td>Company</td>
 					<td datasource="TelephoneNumber">Phone</td>
+					<td>Email</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,7 +29,7 @@
 	</div>
 	<style>
 		#bottomPanel {
-			height: 30%;
+			height: 35%;
 			position: fixed;
 			bottom: 0%;
 			width: 100%;
@@ -105,7 +106,10 @@
 			}).get();
 			console.log(columns);
 			$('#history').DataTable( {
-				"columns": columns
+				"columns": columns,
+				"lengthChange" : false,
+				"pageLength" : 200,
+				"scrollY": '100%'
 			});
 		});
         </script>
