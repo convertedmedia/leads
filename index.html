@@ -42,7 +42,7 @@
         <button onclick="activateNotifications()" style="display: none;" id="activateNotificationsBtn">Activate notifications</button>
         <script>
             var socket = io();
-             $(window).resize(function() {
+             $(window).bind('resize', function() {
 				$('#history').resize();
 			});
             socket.on('lead notification', function(data){
