@@ -599,3 +599,29 @@ info: 8978a772-eb3d-4397-987c-6c47e9d7e4fe Processing message from bounces+14947
 info: 8978a772-eb3d-4397-987c-6c47e9d7e4fe End processing message, deleted .tmp/8978a772-eb3d-4397-987c-6c47e9d7e4fe
 The number of request attempts: 2
 United Arab Emirates
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+info: 2fa43800-e8ba-4298-a98b-dccdb5eb71b8 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 2fa43800-e8ba-4298-a98b-dccdb5eb71b8 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456178591421 ERP
+info: 2fa43800-e8ba-4298-a98b-dccdb5eb71b8 End processing message, deleted .tmp/2fa43800-e8ba-4298-a98b-dccdb5eb71b8
+The number of request attempts: 1
+United Kingdom
+sent notification
+info: 0699663b-d5da-4432-8490-5eea58de0344 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 0699663b-d5da-4432-8490-5eea58de0344 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456178787817 ERP
+info: 0699663b-d5da-4432-8490-5eea58de0344 End processing message, deleted .tmp/0699663b-d5da-4432-8490-5eea58de0344
+The number of request attempts: 2
+United Kingdom
+sent notification
+a user connected
+info: 5d33fe17-4c7b-40f9-928e-061cac0107d5 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 5d33fe17-4c7b-40f9-928e-061cac0107d5 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456179622310 ERP
+info: 5d33fe17-4c7b-40f9-928e-061cac0107d5 End processing message, deleted .tmp/5d33fe17-4c7b-40f9-928e-061cac0107d5
+The number of request attempts: 1
+United States
+sent notification
+a user connected
