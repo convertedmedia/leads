@@ -43,7 +43,7 @@
         <script>
             var socket = io();
              $(window).bind('resize', function() {
-				$('#history').resize();
+				$('#history').css('width','100%');
 			});
             socket.on('lead notification', function(data){
                 var leadData = JSON.parse(data);
