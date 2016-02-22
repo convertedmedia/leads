@@ -54,13 +54,9 @@
                             Phone: ' + (leadData.PhoneIsCell ? 'Cell-' : '') + leadData.PhoneValid + '-' + leadData.Phone : '') + '\n\
                             Company: ' + leadData.Company + '\n\
                             Email: ' + leadData.Email;
-                console.log("did notification")
 				doNotification(title, leadBody);
-				console.log("add row");
 				var dataTable = $('#history').DataTable();
-				console.log(leadData);
 				dataTable.row.add(leadData).draw();
-				dataTable.resize();
             });
             function doNotification(title, leadBody) {
 				if (!("Notification" in window)) {
@@ -104,7 +100,6 @@
 					}
 				};
 			}).get();
-			console.log(columns);
 			$('#history').DataTable( {
 				"columns": columns,
 				"lengthChange" : false,
