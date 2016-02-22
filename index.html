@@ -20,6 +20,7 @@
 					<td>Name</td>
 					<td>Company</td>
 					<td datasource="TelephoneNumber">Phone</td>
+					<td datascource="PhoneValid" defaultVal="<i>No validation</i>">Valid?</td>
 					<td>Email</td>
 				</tr>
 			</thead>
@@ -91,14 +92,18 @@
 		$(document).ready( function() {
 			var columns = $('#history thead:first td').map(function() {
 				if ($(this).attr("datasource") !== undefined && $(this).attr("datasource") !== false) {
-					return {
+					var ret = {
 						"data" : $(this).attr("datasource")
 					};
 				} else {
-					return {
+					var ret = {
 						"data" : $(this).text()
 					}
 				};
+				if ($(this).attr("defaultVal") !== undefined && $(this).attr("defaultVal") !== false) {
+					ret["defaultContent"] = $(this).attr("defaultVal");
+				};
+				return ret
 			}).get();
 			$('#history').DataTable( {
 				"columns": columns,
