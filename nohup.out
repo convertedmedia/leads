@@ -496,3 +496,106 @@ info: e399086f-fea9-4d0d-90a5-5051f6bee209 Processing message from bounces+14947
 info: e399086f-fea9-4d0d-90a5-5051f6bee209 End processing message, deleted .tmp/e399086f-fea9-4d0d-90a5-5051f6bee209
 The number of request attempts: 1
 United Kingdom
+warn: Either spamassassin or spamc are not available. Spam score computation is disabled.
+listening on *:8080
+info: Mailin Smtp server listening on port 25
+a user connected
+a user connected
+info: 0adb66c7-6e83-48b4-a99c-fa6771f74cb8 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 0adb66c7-6e83-48b4-a99c-fa6771f74cb8 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456140424700 ERP
+info: 0adb66c7-6e83-48b4-a99c-fa6771f74cb8 End processing message, deleted .tmp/0adb66c7-6e83-48b4-a99c-fa6771f74cb8
+The number of request attempts: 1
+Greece
+info: 929f6b3d-a531-496a-95c4-a54548122874 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 929f6b3d-a531-496a-95c4-a54548122874 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456140598060 HRMS
+info: 929f6b3d-a531-496a-95c4-a54548122874 End processing message, deleted .tmp/929f6b3d-a531-496a-95c4-a54548122874
+The number of request attempts: 1
+United States
+sent notification
+info: eb26613f-4985-45a5-a7ef-7af29a8cf856 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: eb26613f-4985-45a5-a7ef-7af29a8cf856 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456141247425 ERP
+info: eb26613f-4985-45a5-a7ef-7af29a8cf856 End processing message, deleted .tmp/eb26613f-4985-45a5-a7ef-7af29a8cf856
+The number of request attempts: 1
+Canada
+sent notification
+info: b6bbbf5d-8c21-4977-a66b-950776df87c3 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: b6bbbf5d-8c21-4977-a66b-950776df87c3 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456142073091 HRMS
+info: b6bbbf5d-8c21-4977-a66b-950776df87c3 End processing message, deleted .tmp/b6bbbf5d-8c21-4977-a66b-950776df87c3
+The number of request attempts: 1
+Australia
+info: 98ebbc63-183f-4e3f-8508-8ce227b0db48 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 98ebbc63-183f-4e3f-8508-8ce227b0db48 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456142369850 ERP
+info: 98ebbc63-183f-4e3f-8508-8ce227b0db48 End processing message, deleted .tmp/98ebbc63-183f-4e3f-8508-8ce227b0db48
+The number of request attempts: 1
+South Africa
+info: d76d2ed4-86e7-4375-a940-87b449e7bad2 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: d76d2ed4-86e7-4375-a940-87b449e7bad2 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456142376667 ERP
+info: d76d2ed4-86e7-4375-a940-87b449e7bad2 End processing message, deleted .tmp/d76d2ed4-86e7-4375-a940-87b449e7bad2
+The number of request attempts: 1
+India
+info: 9e18e95f-dd14-48ab-8e00-a9e558ca16e6 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 9e18e95f-dd14-48ab-8e00-a9e558ca16e6 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456142504927 ERP
+info: 9e18e95f-dd14-48ab-8e00-a9e558ca16e6 End processing message, deleted .tmp/9e18e95f-dd14-48ab-8e00-a9e558ca16e6
+The number of request attempts: 1
+Romania
+info: 6be87eca-5a20-4bea-b4b3-3208593928e7 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 6be87eca-5a20-4bea-b4b3-3208593928e7 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456143656700 ERP
+info: 6be87eca-5a20-4bea-b4b3-3208593928e7 End processing message, deleted .tmp/6be87eca-5a20-4bea-b4b3-3208593928e7
+The number of request attempts: 1
+United States
+sent notification
+info: 91ff946d-2ad7-45ac-b77b-880a4f3727a9 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 91ff946d-2ad7-45ac-b77b-880a4f3727a9 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456145268741 ERP
+info: 91ff946d-2ad7-45ac-b77b-880a4f3727a9 End processing message, deleted .tmp/91ff946d-2ad7-45ac-b77b-880a4f3727a9
+The number of request attempts: 2
+Norway
+a user connected
+info: d498b46d-d6c0-4b4e-a76d-19b6d02a0dd9 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: d498b46d-d6c0-4b4e-a76d-19b6d02a0dd9 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456145866056 HRMS
+info: d498b46d-d6c0-4b4e-a76d-19b6d02a0dd9 End processing message, deleted .tmp/d498b46d-d6c0-4b4e-a76d-19b6d02a0dd9
+The number of request attempts: 4
+Germany
+info: 346515ee-467c-4485-bee8-75c07c34958a Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 346515ee-467c-4485-bee8-75c07c34958a Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456146285492 ERP
+info: 346515ee-467c-4485-bee8-75c07c34958a End processing message, deleted .tmp/346515ee-467c-4485-bee8-75c07c34958a
+The number of request attempts: 1
+United States
+sent notification
+info: 366b6eff-9415-450a-81cc-ce70653e1743 Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 366b6eff-9415-450a-81cc-ce70653e1743 Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456146412876 ERP
+info: 366b6eff-9415-450a-81cc-ce70653e1743 End processing message, deleted .tmp/366b6eff-9415-450a-81cc-ce70653e1743
+The number of request attempts: 1
+United States
+sent notification
+info: 987f57f3-61f9-4756-971a-5445c8eaf67e Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 987f57f3-61f9-4756-971a-5445c8eaf67e Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456146698666 ERP
+info: 987f57f3-61f9-4756-971a-5445c8eaf67e End processing message, deleted .tmp/987f57f3-61f9-4756-971a-5445c8eaf67e
+The number of request attempts: 1
+United States
+sent notification
+info: 01fbaedf-0889-4366-90dc-93fe7bce6d5f Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 01fbaedf-0889-4366-90dc-93fe7bce6d5f Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456146710951 ERP
+info: 01fbaedf-0889-4366-90dc-93fe7bce6d5f End processing message, deleted .tmp/01fbaedf-0889-4366-90dc-93fe7bce6d5f
+The number of request attempts: 1
+Canada
+sent notification
+info: 8978a772-eb3d-4397-987c-6c47e9d7e4fe Receiving message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+info: 8978a772-eb3d-4397-987c-6c47e9d7e4fe Processing message from bounces+1494756-cb31-leads=leads.conmedleads.co.uk@noreply.securenotifier.com
+1456146766747 ERP
+info: 8978a772-eb3d-4397-987c-6c47e9d7e4fe End processing message, deleted .tmp/8978a772-eb3d-4397-987c-6c47e9d7e4fe
+The number of request attempts: 2
+United Arab Emirates

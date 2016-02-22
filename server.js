@@ -62,7 +62,7 @@ function getLead(UID, type) {
         "query" : queryJson
       };
     function leadGetSuccess(err, response, body) {
-		var leadsData = parser.toJson(body, {object: true});
+					var leadsData = parser.toJson(body, {object: true});
 		return err || leadsData["Leads"]["sentcount"] == 0;
 	};
 	request({
@@ -99,7 +99,7 @@ function getLocation(leadData) {
 			if (err) {
 				console.log(err);
 			} else {
-				if (typeof data.country !== undefined && typeof data.country.names.en !== undefined && data.country.names.en.length) {
+				if (typeof data.country !== undefined && typeof data.country.names !== undefined && data.country.names.en.length) {
 					leadData["Country"] = data.country.names.en;
 					leadData.gotLocation = true;
 					console.log(leadData.Country);

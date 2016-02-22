@@ -15,12 +15,12 @@
 			<thead>
 				<tr>
 					<td datasource="DateAdded">Date</td>
-					<td>Country</td>
+					<td defaultVal="<i>Unknown</i>">Country</td>
 					<td>Market</td>
 					<td>Name</td>
 					<td>Company</td>
 					<td datasource="TelephoneNumber">Phone</td>
-					<td datascource="PhoneValid" defaultVal="<i>No validation</i>">Valid?</td>
+					<td datasource="PhoneValid" defaultVal="<i>No validation</i>">Valid?</td>
 					<td>Email</td>
 				</tr>
 			</thead>
@@ -54,11 +54,11 @@
             socket.on('lead notification', function(data){
                 var leadData = JSON.parse(data);
                 var title = "New " + leadData.Market + (leadData.gotLocation ? " lead in territory" : " lead in unknown territory ") + leadData.UID;
-                var leadBody =  'Added: ' + leadData.DateAdded + '\n\
-                            ' + (leadData.gotLead ? 'Name: ' + leadData.Name + '\n\
-                            Phone: ' + (leadData.PhoneIsCell ? 'Cell-' : '') + leadData.PhoneValid + '-' + leadData.Phone : '') + '\n\
-                            Company: ' + leadData.Company + '\n\
-                            Email: ' + leadData.Email;
+                var leadBody =  'Added: ' + leadData.DateAdded + '\n'
+                            + (leadData.gotLead ? 'Name: ' + leadData.Name + '\n'
+                            + 'Phone: ' + (leadData.PhoneIsCell ? 'Cell-' : '') + leadData.PhoneValid + '-' + leadData.Phone : '') + '\n'
+                            + 'Company: ' + leadData.Company + '\n'
+                            + 'Email: ' + leadData.Email;
 				doNotification(title, leadBody);
 				var dataTable = $('#history').DataTable();
 				dataTable.row.add(leadData).draw();
@@ -113,7 +113,8 @@
 				"columns": columns,
 				"lengthChange" : false,
 				"pageLength" : 200,
-				"scrollY": '100%'
+				"scrollY": '100%',
+				"order": [[ 0, "desc" ]]
 			});
 		});
         </script>
