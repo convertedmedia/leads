@@ -40,7 +40,7 @@
 		#history {
 			width: 100%;
 		}
-		.dataTables_scrollHeadInner {
+		.dataTables_scroll {
 			width: 100%;
 		}
 	</style>
@@ -49,6 +49,7 @@
             var socket = io();
              $(window).bind('resize', function() {
 				$('#history').css('width','100%');
+				$('.dataTables_scroll').css('width','100%');
 			});
             socket.on('lead notification', function(data){
                 var leadData = JSON.parse(data);
