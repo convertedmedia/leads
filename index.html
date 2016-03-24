@@ -1,33 +1,32 @@
 <!doctype html>
 <html>
-    <head>
-        <title>Lead Manager</title>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
-    </head>
-    <body onload="showNotificationBtn()">
-        <h1>Lead Manager</h1>
-	<div id="historyContainer">
-		<table id="history" class="hover order-column row-border stripe compact">
-			<thead>
-				<tr>
-					<th datasource="DateAdded">Date</th>
-					<th defaultVal="<i>Unknown</i>">Country</th>
-					<th>Market</th>
-					<th>Name</th>
-					<th>Company</th>
-					<th datasource="TelephoneNumber">Phone</th>
-					<th datasource="PhoneValid" defaultVal="<i>No validation</i>">Valid?</th>
-					<th>Email</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
-	</div>
+	<head>
+		<title>Lead Manager</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
+	</head>
+	<body onload="showNotificationBtn()">
+		<h1>Lead Manager</h1>
+		<div id="historyContainer">
+			<table id="history" class="hover order-column row-border stripe compact">
+				<thead>
+					<tr>
+						<th datasource="DateAdded">Date</th>
+						<th defaultVal="<i>Unknown</i>">Country</th>
+						<th>Market</th>
+						<th>Name</th>
+						<th>Company</th>
+						<th datasource="TelephoneNumber">Phone</th>
+						<th datasource="PhoneValid" defaultVal="<i>No validation</i>">Valid?</th>
+						<th>Email</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
 	<style>
 		body {
 			margin: 0px;
@@ -42,41 +41,28 @@
 			border-width: thin;
 		}
 	</style>
-        <button onclick="activateNotifications()" style="display: none;" id="activateNotificationsBtn">Activate notifications</button>
-        <script>
-            var socket = io();
-	    $(window).bind('resize', function () {
-		$('#history').DataTable().columns.adjust().draw();
-	    } );
-            socket.on('lead notification', function(data){
-                var leadData = JSON.parse(data);
-                var title = "New " + leadData.Market + (leadData.gotLocation ? " lead in territory" : " lead in unknown territory ") + leadData.UID;
-                var leadBody =  'Added: ' + leadData.DateAdded + '\n'
-                            + (leadData.gotLead ? 'Name: ' + leadData.Name + '\n'
-                            + 'Phone: ' + (leadData.PhoneIsCell ? 'Cell-' : '') + leadData.PhoneValid + '-' + leadData.Phone : '') + '\n'
-                            + 'Company: ' + leadData.Company + '\n'
-                            + 'Email: ' + leadData.Email;
+		<button onclick="activateNotifications()" style="display: none;" id="activateNotificationsBtn">Activate notifications</button>
+		<script>
+			var socket = io();
+			$(window).bind('resize', function () {
+				$('#history').DataTable().columns.adjust().draw();
+			} );
+			
+			socket.on('lead notification', function(data){
+				var leadData = JSON.parse(data);
+				var title = "New " + leadData.Market + (leadData.gotLocation ? " lead in territory" : " lead in unknown territory ") + leadData.UID;
+				var leadBody =  'Added: ' + leadData.DateAdded + '\n'
+						+ (leadData.gotLead ? 'Name: ' + leadData.Name + '\n'
+						+ 'Phone: ' + (leadData.PhoneIsCell ? 'Cell-' : '') + leadData.PhoneValid + '-' + leadData.Phone : '') + '\n'
+						+ 'Company: ' + leadData.Company + '\n'
+						+ 'Email: ' + leadData.Email;
 				doNotification(title, leadBody);
 				var dataTable = $('#history').DataTable();
 				dataTable.row.add(leadData).draw();
 				dataTable.columns.adjust().draw();
-            });
-            function doNotification(title, leadBody) {
-				if (!("Notification" in window)) {
-					alert("This browser does not support desktop notification");
-				} else if (Notification.permission === "granted") {
-					var leadNotification = new Notification(title, {
-						body: leadBody
-					});
-					leadNotification.onclick = function() {
-						window.focus();
-						leadNotification.close();
-					};
-				} else if (Notification.permission !== 'denied') {
-					alert("Notifications not activated!");
-				};
-            };
-            function activateNotifications() {
+			});
+			
+			function activateNotifications() {
 				if (!("Notification" in window)) {
 					alert("This browser does not support desktop notification");
 				} else if (Notification.permission === "granted") {
@@ -95,30 +81,45 @@
 					document.getElementById("activateNotificationsBtn").setAttribute("style", "");
 				};
 			};
-		$(document).ready( function() {
-			var columns = $('#history thead:first th').map(function() {
-				if ($(this).attr("datasource") !== undefined && $(this).attr("datasource") !== false) {
-					var ret = {
-						"data" : $(this).attr("datasource")
+			$(document).ready( function() {
+				var columns = $('#history thead:first th').map(function() {
+					if ($(this).attr("datasource") !== undefined && $(this).attr("datasource") !== false) {
+						var ret = {
+							"data" : $(this).attr("datasource")
+						};
+					} else {
+						var ret = {
+							"data" : $(this).text()
+						}
 					};
-				} else {
-					var ret = {
-						"data" : $(this).text()
-					}
-				};
-				if ($(this).attr("defaultVal") !== undefined && $(this).attr("defaultVal") !== false) {
-					ret["defaultContent"] = $(this).attr("defaultVal");
-				};
-				return ret
-			}).get();
-			$('#history').DataTable( {
-				"columns": columns,
-				"lengthChange" : false,
-				"pageLength" : 200,
-				"scrollY": '100%',
-				"order": [[ 0, "desc" ]]
+					if ($(this).attr("defaultVal") !== undefined && $(this).attr("defaultVal") !== false) {
+						ret["defaultContent"] = $(this).attr("defaultVal");
+					};
+					return ret
+				}).get();
+				$('#history').DataTable( {
+					"columns": columns,
+					"lengthChange" : false,
+					"pageLength" : 200,
+					"scrollY": '100%',
+					"order": [[ 0, "desc" ]]
+				});
 			});
-		});
-        </script>
-    </body>
+			function doNotification(title, leadBody) {
+				if (!("Notification" in window)) {
+					alert("This browser does not support desktop notification");
+				} else if (Notification.permission === "granted") {
+					var leadNotification = new Notification(title, {
+						body: leadBody
+					});
+					leadNotification.onclick = function() {
+						window.focus();
+						leadNotification.close();
+					};
+				} else if (Notification.permission !== 'denied') {
+					alert("Notifications not activated!");
+				};
+			};
+		</script>
+	</body>
 </html>

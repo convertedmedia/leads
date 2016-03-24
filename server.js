@@ -8,61 +8,60 @@ var io = require('socket.io')(http);
 var validator = require('validator');
 
 var LIDs = {
-    "ERP" : "1762",
-    "HRMS" : "3515",
-    "EHR" : "5432",
+	"ERP" : "1762",
+	"HRMS" : "3515",
+	"EHR" : "5432",
 }
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + "/index.html");
+	res.sendFile(__dirname + "/index.html");
 });
 
 http.listen(80, function(){
-  console.log('listening on *:8080');
+	console.log('listening on *:8080');
 });
 
 mailin.start({
-    port: 25,
-    disableWebhook:true
+	port: 25,
+	disableWebhook:true
 });
 
 // Handle email
 mailin.on('message', function(connection, data, content) {
-    var emailContent = data.text;
-    var UIDLocation = emailContent.search("Lead ") + 5;
-    var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
-    var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
+	var emailContent = data.text;
+	var UIDLocation = emailContent.search("Lead ") + 5;
+	var UID = emailContent.substring(UIDLocation,UIDLocation + 8);
+	var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
 	getLead(UID, type);
 });
 
 //gets lead information
 function getLead(UID, type) {
-    console.log(Date.now() + " " + type);
-    var LID = LIDs[type];
-    var today = new Date();
-    var yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
-    var tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + 1);
-    var yesterdayStr = (yesterday.getMonth() + 1) + '/' + yesterday.getDate() + '/' +  yesterday.getFullYear();
-    var tomorrowStr = (tomorrow.getMonth() + 1) + '/' + tomorrow.getDate() + '/' +  tomorrow.getFullYear();
-    var query = {
-        "UID" : parseInt(UID)
-    };
+	console.log(Date.now() + " " + type);
+	var LID = LIDs[type];
+	var today = new Date();
+	var yesterday = new Date(today);
+	yesterday.setDate(today.getDate() - 1);
+	var tomorrow = new Date(today);
+	tomorrow.setDate(today.getDate() + 1);
+	var yesterdayStr = (yesterday.getMonth() + 1) + '/' + yesterday.getDate() + '/' +  yesterday.getFullYear();
+	var tomorrowStr = (tomorrow.getMonth() + 1) + '/' + tomorrow.getDate() + '/' +  tomorrow.getFullYear();
+	var query = {
+		"UID" : parseInt(UID)
+	};
 	var queryJson = JSON.stringify(query);
-    var payload = 
-      {
-        "key" : "4BE5B85E834B62AFBCC04E6AA7B36518CBA79A8B316917E3D660D7C535BD8AE5",
-        "lid" : parseInt(LID),
-        "SortOrder" : "DESC",
-        "StartDate" : yesterdayStr,
-        "EndDate" : tomorrowStr,
-        "skip" : "0",
-        "take" : "1",
-        "query" : queryJson
-      };
-    function leadGetSuccess(err, response, body) {
-					var leadsData = parser.toJson(body, {object: true});
+	var payload = {
+		"key" : "4BE5B85E834B62AFBCC04E6AA7B36518CBA79A8B316917E3D660D7C535BD8AE5",
+		"lid" : parseInt(LID),
+		"SortOrder" : "DESC",
+		"StartDate" : yesterdayStr,
+		"EndDate" : tomorrowStr,
+		"skip" : "0",
+		"take" : "1",
+		"query" : queryJson
+	};
+	function leadGetSuccess(err, response, body) {
+		var leadsData = parser.toJson(body, {object: true});
 		return err || leadsData["Leads"]["sentcount"] == 0;
 	};
 	request({
@@ -75,8 +74,8 @@ function getLead(UID, type) {
 	}, function (error, response, body) {
 		if (response) {
 			console.log("The number of request attempts: " + response.attempts);
-        };
-        var leadsData = parser.toJson(body, {object: true});
+		};
+		var leadsData = parser.toJson(body, {object: true});
 		if (leadsData["Leads"]["sentcount"] > 0) {
 			var leadData = leadsData["Leads"]["Lead"];
 			leadData.Market = type;
@@ -86,11 +85,11 @@ function getLead(UID, type) {
 			console.log("needed more attempts, response: " + leadsData);
 			io.emit('lead notification', JSON.stringify({"gotLead": false, "gotLocation": false, "UID": UID, "Market" : type}));
 		}
-    });
+	});
 }
 
 io.on('connection', function(socket){
-  console.log('a user connected');
+	console.log('a user connected');
 });
 
 function getLocation(leadData) {
