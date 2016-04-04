@@ -25,6 +25,7 @@
     "jquery": "^2.2.0",
     "jsonfile": "^2.2.3",
     "mailin": "~3.0.3",
+    "mysql": "^2.10.2",
     "node-request-retry": "^1.0.0",
     "notify.js": "0.0.3",
     "notifyjs": "^1.2.8",

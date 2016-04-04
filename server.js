@@ -36,6 +36,7 @@ mailin.on('message', function(connection, data, content) {
 	var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
 	getLead(UID, type);
 });
+getLead("ERP");
 
 //gets lead information
 function getLead(type) {
@@ -83,7 +84,7 @@ function getLead(type) {
 				var dbData = processLead(leadData, type);
 				connection.query('INSERT INTO capture SET ?', dbData, function(err, result) {
 					progress.tick;
-				};
+				});
 			};
 		} else {
 			console.log("needed more attempts, response: " + leadsData);
