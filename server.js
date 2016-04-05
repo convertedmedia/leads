@@ -36,10 +36,17 @@ mailin.on('message', function(connection, data, content) {
 	var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
 	getLead(UID, type);
 });
-getLead("ERP");
+getLead("ERP", "ASC");
+getLead("ERP", "DESC");
+getLead("HRMS", "ASC");
+getLead("HRMS", "DESC");
+getLead("EHR", "ASC");
+getLead("EHR", "DESC");
+
+
 
 //gets lead information
-function getLead(type) {
+function getLead(type, order) {
 	console.log("started");
 	var connection = mysql.createConnection({
 		host : 'leadsdb.crijmtwg9nkv.us-west-1.rds.amazonaws.com',
@@ -60,7 +67,7 @@ function getLead(type) {
 	var payload = {
 		"key" : "4BE5B85E834B62AFBCC04E6AA7B36518CBA79A8B316917E3D660D7C535BD8AE5",
 		"lid" : parseInt(LID),
-		"SortOrder" : "DESC",
+		"SortOrder" : order,
 		"StartDate" : "01/01/2016",
 		"EndDate" : tomorrowStr,
 		"skip" : "0",
