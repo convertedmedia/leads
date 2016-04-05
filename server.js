@@ -36,12 +36,7 @@ mailin.on('message', function(connection, data, content) {
 	var type = emailContent.search(/HRMS/i) > -1 ? "HRMS" : (emailContent.search(/EHR/i) > -1 ? "EHR" : "ERP");
 	getLead(UID, type);
 });
-getLead("ERP", "ASC");
 getLead("ERP", "DESC");
-getLead("HRMS", "ASC");
-getLead("HRMS", "DESC");
-getLead("EHR", "ASC");
-getLead("EHR", "DESC");
 
 
 
@@ -114,25 +109,21 @@ io.on('connection', function(socket){
 function processLead(leadData, type) {
 	var dbData = 
 		[[
-			typeof leadData.UID === undefined ? 'DEFAULT' : parseInt(leadData.UID),
+			leadData.UID,
 			typeof leadData.FirstName === undefined ? 'DEFAULT' : leadData.FirstName,
 			typeof leadData.LastName === undefined ? 'DEFAULT' : leadData.LastName,
 			typeof leadData.Company === undefined ? 'DEFAULT' : leadData.Company,
 			typeof leadData.Email === undefined ? 'DEFAULT' : leadData.Email,
-			typeof leadData.Phone === undefined ? 'DEFAULT' : leadData.Phone,
 			typeof leadData.JobTitle === undefined ? 'DEFAULT' : leadData.JobTitle,
 			typeof leadData.City === undefined ? 'DEFAULT' : leadData.City,
-			typeof leadData.State === undefined ? 'DEFAULT' : leadData.State,
 			typeof leadData.Website === undefined ? 'DEFAULT' : leadData.Website,
 			typeof leadData.NumberofEmployees === undefined ? 'DEFAULT' : leadData.NumberofEmployees,
 			typeof leadData.UsingERP === undefined ? 'DEFAULT' : leadData.UsingERP,
-			typeof leadData.ConsideringERP === undefined ? 'DEFAULT' : leadData.ConsideringERP,
 			typeof leadData.Timeframe === undefined ? 'DEFAULT' : leadData.Timeframe,
 			typeof leadData.DecisionMaker === undefined ? 'DEFAULT' : leadData.DecisionMaker,
 			typeof leadData.EstimatedBudget === undefined ? 'DEFAULT' : leadData.EstimatedBudget,
 			typeof leadData.CompanySector === undefined ? 'DEFAULT' : leadData.CompanySector,
 			typeof leadData.RequiredFunctions === undefined ? 'DEFAULT' : leadData.RequiredFunctions,
-			typeof leadData.OperatingSystem === undefined ? 'DEFAULT' : leadData.OperatingSystem,
 			typeof leadData.Industry === undefined ? 'DEFAULT' : leadData.Industry,
 			typeof leadData.Demo === undefined ? 'DEFAULT' : leadData.Demo,
 			typeof leadData.LeadRating === undefined ? 'DEFAULT' : leadData.LeadRating,
@@ -204,7 +195,7 @@ function processLead(leadData, type) {
 			typeof leadData.ProjectTimeframe === undefined ? 'DEFAULT' : leadData.ProjectTimeframe,
 			typeof leadData.PurachasingTimeline === undefined ? 'DEFAULT' : leadData.PurachasingTimeline,
 			typeof leadData.UsingEHR === undefined ? 'DEFAULT' : leadData.UsingEHR,
-			0
+			new Date(leadData.DateAdded)
 		]]
 	return dbData;
 }
