@@ -40,11 +40,13 @@ getLead("ERP");
 
 //gets lead information
 function getLead(type) {
+	console.log("started");
 	var connection = mysql.createConnection({
 		host : 'leadsdb.crijmtwg9nkv.us-west-1.rds.amazonaws.com',
 		user : 'gabriel',
 		password : 'NEWnewyear2412',
-		ssl : 'Amazon RDS'
+		ssl : 'Amazon RDS',
+		database : 'innodb'
 	});
 	console.log(Date.now() + " " + type);
 	var LID = LIDs[type];
@@ -78,12 +80,15 @@ function getLead(type) {
 	}, function (error, response, body) {
 		var leadsData = parser.toJson(body, {object: true});
 		if (leadsData["Leads"]["sentcount"] > 0) {
-			var progress = new ProgressBar(':bar', {total: leadsData["Leads"]["sentcount"]});
+			var progress = new ProgressBar(':bar', {total: parseInt(leadsData["Leads"]["sentcount"])});
 			for (i = 0; i < leadsData["Leads"]["sentcount"]; i++) {
-				var leadData = leadsData["Leads"]["Leads"][i];
+				var leadData = leadsData["Leads"]["Lead"][i];
 				var dbData = processLead(leadData, type);
-				connection.query('INSERT INTO capture SET ?', dbData, function(err, result) {
+				connection.query('INSERT INTO capture SET (?);', dbData, function(err, result) {
 					progress.tick;
+					if(err) {
+						console.log(err);
+					};
 				});
 			};
 		} else {
@@ -99,8 +104,8 @@ io.on('connection', function(socket){
 
 function processLead(leadData, type) {
 	var dbData = 
-		[
-			typeof leadData.UID === undefined ? DEFAULT : leadData.UID,
+		[[
+			typeof leadData.UID === undefined ? DEFAULT : parseInt(leadData.UID),
 			typeof leadData.FirstName === undefined ? DEFAULT : leadData.FirstName,
 			typeof leadData.LastName === undefined ? DEFAULT : leadData.LastName,
 			typeof leadData.Company === undefined ? DEFAULT : leadData.Company,
@@ -143,7 +148,7 @@ function processLead(leadData, type) {
 			typeof leadData.SageIndustry === undefined ? DEFAULT : leadData.SageIndustry,
 			typeof leadData.SageBudget === undefined ? DEFAULT : leadData.SageBudget,
 			typeof leadData.LeadRevenue === undefined ? DEFAULT : leadData.LeadRevenue,
-			typeof leadData.LastCall === undefined ? DEFAULT : leadData.LastCall,
+			typeof leadData.LastCall === undefined ? DEFAULT : parseInt(leadData.LastCall),
 			typeof leadData.DateofCall === undefined ? DEFAULT : leadData.DateofCall,
 			typeof leadData.CallNote === undefined ? DEFAULT : leadData.CallNote,
 			typeof leadData.LastEmail === undefined ? DEFAULT : leadData.LastEmail,
@@ -163,11 +168,11 @@ function processLead(leadData, type) {
 			typeof leadData.utm_medium === undefined ? DEFAULT : leadData.utm_medium,
 			typeof leadData.utm_campaign === undefined ? DEFAULT : leadData.utm_campaign,
 			typeof leadData.gclid === undefined ? DEFAULT : leadData.gclid,
-			typeof leadData.IndustrySub-Category === undefined ? DEFAULT : leadData.IndustrySub-Category,
+			typeof leadData["IndustrySub-Category"] === undefined ? DEFAULT : leadData["IndustrySub-Category"],
 			typeof leadData.LeadType === undefined ? DEFAULT : leadData.LeadType,
 			typeof leadData.Status === undefined ? DEFAULT : leadData.Status,
 			typeof leadData.CommentsContinued === undefined ? DEFAULT : leadData.CommentsContinued,
-			typeof leadData.DateofQualification === undefined ? DEFAULT : leadData.DateofQualification,
+			typeof leadData.DateofQualification === undefined ? DEFAULT : new Date(leadData.DateofQualification),
 			typeof leadData.SageRevenue === undefined ? DEFAULT : leadData.SageRevenue,
 			typeof leadData.Multilingual === undefined ? DEFAULT : leadData.Multilingual,
 			typeof leadData.UKRevenue === undefined ? DEFAULT : leadData.UKRevenue,
@@ -190,7 +195,8 @@ function processLead(leadData, type) {
 			typeof leadData.ProjectTimeframe === undefined ? DEFAULT : leadData.ProjectTimeframe,
 			typeof leadData.PurachasingTimeline === undefined ? DEFAULT : leadData.PurachasingTimeline,
 			typeof leadData.UsingEHR === undefined ? DEFAULT : leadData.UsingEHR,
-		]
+			0
+		]]
 	return dbData;
 }
 
