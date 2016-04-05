@@ -84,8 +84,10 @@ function getLead(type) {
 			for (i = 0; i < leadsData["Leads"]["sentcount"]; i++) {
 				var leadData = leadsData["Leads"]["Lead"][i];
 				var dbData = processLead(leadData, type);
-				connection.query('INSERT INTO capture SET (?);', dbData, function(err, result) {
-					progress.tick;
+				console.log("DATA:");
+				console.log(dbData);
+				connection.query('INSERT INTO capture VALUES (?);', dbData, function(err, result) {
+					progress.tick();
 					if(err) {
 						console.log(err);
 					};
@@ -148,7 +150,7 @@ function processLead(leadData, type) {
 			typeof leadData.SageIndustry === undefined ? 'DEFAULT' : leadData.SageIndustry,
 			typeof leadData.SageBudget === undefined ? 'DEFAULT' : leadData.SageBudget,
 			typeof leadData.LeadRevenue === undefined ? 'DEFAULT' : leadData.LeadRevenue,
-			typeof leadData.LastCall === undefined ? 'DEFAULT' : parseInt(leadData.LastCall),
+			typeof leadData.LastCall === undefined ? 'DEFAULT' : leadData.LastCall,
 			typeof leadData.DateofCall === undefined ? 'DEFAULT' : leadData.DateofCall,
 			typeof leadData.CallNote === undefined ? 'DEFAULT' : leadData.CallNote,
 			typeof leadData.LastEmail === undefined ? 'DEFAULT' : leadData.LastEmail,
