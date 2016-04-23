@@ -198,7 +198,7 @@ function processLead(leadData, type) {
 	dbData.email = dbData.email.toLowerCase();
 	connection.query('SELECT * FROM contact WHERE contact_email = ?', [dbData.email], function(err, results, fields) {
 		if (results.length == 1) {
-			var dbData.contact_id = results[0].contact_id;
+			dbData.contact_id = results[0].contact_id;
 			sendToDb(dbData);
 		} else {
 			var contactData = {
