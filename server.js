@@ -207,7 +207,7 @@ function processLead(leadData, type) {
 				"contact_email" : dbData.email,
 				"contact_phone" : dbData.phone
 			};
-			connection.query('INSERT INTO contact VALUES (?);', [contactData], function(err, result) {
+			connection.query('INSERT INTO contact VALUES (?);', contactData, function(err, result) {
 				if(err) {
 					console.log(err);
 				};
@@ -217,6 +217,14 @@ function processLead(leadData, type) {
 		};
 	});
 }	
+
+function sendToDb(dbData) {
+	connection.query('INSERT INTO capture VALUES (?);', dbData, function(err, result) {
+		if(err) {
+			console.log(err);
+		};
+	});
+}
 
 function processLeadData(leadData) {
 	var dbData = {};
