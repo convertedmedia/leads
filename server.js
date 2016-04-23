@@ -197,7 +197,7 @@ io.on('connection', function(socket){
 function processLead(leadData, type) {
 	var dbData = processLeadData(leadData);
 	dbData.email = dbData.email.toLowerCase();
-	connection.query('SELECT * FROM contact WHERE contact_email = ?;', [dbData.email], function(err, results, fields) {
+	connection.query('SELECT * FROM contact WHERE contact_email = ?;', dbData.email, function(err, results, fields) {
 		console.log(JSON.stringify(results));
 		if (results.length == 1) {
 			dbData.contact_id = results[0].contact_id;
