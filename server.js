@@ -161,7 +161,7 @@ function getLead(type, order) {
 		"StartDate" : "01/01/2016",
 		"EndDate" : tomorrowStr,
 		"skip" : "0",
-		"take" : "100"
+		"take" : "1"
 	};
 	function leadGetSuccess(err, response, body) {
 		var leadsData = parser.toJson(body, {object: true});
@@ -199,6 +199,7 @@ function processLead(leadData, type) {
 	dbData.email = dbData.email.toLowerCase();
 	connection.query('SELECT * FROM contact WHERE contact_email = ?;', dbData.email, function(err, results, fields) {
 		if (results.length > 0) {
+			console.log(JSON.stringify(results[0]);
 			dbData.contact_id = results[0].contact_id;
 			sendToDb(dbData);
 		} else {
