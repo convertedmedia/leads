@@ -161,7 +161,7 @@ function getLead(type, order) {
 		"StartDate" : "01/01/2016",
 		"EndDate" : tomorrowStr,
 		"skip" : "0",
-		"take" : "1"
+		"take" : "100"
 	};
 	function leadGetSuccess(err, response, body) {
 		var leadsData = parser.toJson(body, {object: true});
@@ -175,14 +175,15 @@ function getLead(type, order) {
 		retryDelay: 1500,
 		retryStrategy: leadGetSuccess
 	}, function (error, response, body) {
-		var leadsData = parser.toJson(body, {object: true});
-		if (leadsData["Leads"]["sentcount"] > 0) {
-			var progress = new ProgressBar(':bar', {total: parseInt(leadsData["Leads"]["sentcount"])});
-			for (i = 0; i < leadsData["Leads"]["sentcount"]; i++) {
-				var leadData = leadsData["Leads"]["Lead"][i];
-				processLead(leadData, type);
-				
-			};
+		var resultData = parser.toJson(body, {object: true});
+		if (resultData["Leads"]["sentcount"] > 0) {
+			var leadsData = resultData["Leads"]["Lead"];
+			processLeads(leadsData, type, 0);
+			//for (i = 0; i < leadsData["Leads"]["sentcount"]; i++) {
+			//	var leadData = resultData["Leads"]["Lead"][i];
+			//	processLead(leadData, type);
+			//	
+			//};
 		} else {
 			console.log("needed more attempts, response: " + leadsData);
 			io.emit('lead notification', JSON.stringify({"gotLead": false, "gotLocation": false, "UID": UID, "Market" : type}));
@@ -194,13 +195,19 @@ io.on('connection', function(socket){
 	console.log('a user connected');
 });
 
-function processLead(leadData, type) {
-	var dbData = processLeadData(leadData);
+function processLeads(leadsData, type, i) {
+	if (i < leadsData.length) {
+		processLead(leadsData, type, i);
+	}
+
+function processLead(leadsData, type, i) {
+	var dbData = processLeadData(leadsData[i]);
 	dbData.email = dbData.email.toLowerCase();
 	connection.query('SELECT * FROM contact WHERE contact_email = ?;', dbData.email, function(err, results, fields) {
 		if (results.length > 0) {
 			console.log(JSON.stringify(results[0]);
 			dbData.contact_id = results[0].contact_id;
+			processLeads(leadsData, type, i+1);
 			sendToDb(dbData);
 		} else {
 			var contactData = {
@@ -214,6 +221,7 @@ function processLead(leadData, type) {
 					console.log(err);
 				};
 				dbData.contact_id = result.insertId;
+				processLeads(leadsData, type, i+1);
 				sendToDb(dbData);
 			});
 		};
