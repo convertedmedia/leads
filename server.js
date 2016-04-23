@@ -17,6 +17,7 @@ var LIDs = {
 }
 
 var fields = {
+	"UID": "id",
 	"FirstName": "first_name",
 	"LastName": "last_name",
 	"Company": "company",
@@ -195,6 +196,7 @@ io.on('connection', function(socket){
 
 function processLead(leadData, type) {
 	var dbData = processLeadData(leadData);
+	dbData.id = uid
 	dbData.email = dbData.email.toLowerCase();
 	connection.query('SELECT * FROM contact WHERE contact_email = ?;', [dbData.email], function(err, results, fields) {
 		if (results.length == 1) {
