@@ -221,7 +221,9 @@ function processLead(leadData, type) {
 function processLeadData(leadData) {
 	var dbData = {};
 	for (var index in leadData) {
-		dbData[fields[index]] = leadData[index].trim();
+		if(fields.hasOwnProperty(index)) {
+			dbData[fields[index]] = leadData[index].trim();
+		};
 	};
 	return dbData;
 //	var dbData = 
