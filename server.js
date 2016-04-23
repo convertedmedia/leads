@@ -196,18 +196,18 @@ io.on('connection', function(socket){
 function processLead(leadData, type) {
 	var dbData = processLeadData(leadData);
 	dbData.email = dbData.email.toLowerCase();
-	connection.query('SELECT * FROM contact WHERE contact_email = ?', [dbData.email], function(err, results, fields) {
+	connection.query('SELECT * FROM contact WHERE contact_email = ?;', [dbData.email], function(err, results, fields) {
 		if (results.length == 1) {
 			dbData.contact_id = results[0].contact_id;
 			sendToDb(dbData);
 		} else {
 			var contactData = {
-				"contact_name" : dbData.name,
-				"contact_company" : dbData.company,
-				"contact_email" : dbData.email,
-				"contact_phone" : dbData.phone
+				contact_name : dbData.name,
+				contact_company : dbData.company,
+				contact_email : dbData.email,
+				contact_phone : dbData.phone
 			};
-			connection.query('INSERT INTO contact VALUES (?);', contactData, function(err, result) {
+			connection.query('INSERT INTO contact SET ?;', contactData, function(err, result) {
 				if(err) {
 					console.log(err);
 				};
@@ -219,7 +219,7 @@ function processLead(leadData, type) {
 }	
 
 function sendToDb(dbData) {
-	connection.query('INSERT INTO capture VALUES (?);', dbData, function(err, result) {
+	connection.query('INSERT INTO capture SET ?;', dbData, function(err, result) {
 		if(err) {
 			console.log(err);
 		};
