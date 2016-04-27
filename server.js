@@ -177,13 +177,10 @@ function getLead(type, order) {
 	}, function (error, response, body) {
 		var resultData = parser.toJson(body, {object: true});
 		if (resultData["Leads"]["sentcount"] > 0) {
-			var leadsData = resultData["Leads"]["Lead"];
-			processLeads(leadsData, type, 0);
-			//for (i = 0; i < leadsData["Leads"]["sentcount"]; i++) {
-			//	var leadData = resultData["Leads"]["Lead"][i];
-			//	processLead(leadData, type);
-			//	
-			//};
+			for (i = 0; i < leadsData["Leads"]["sentcount"]; i++) {
+				var leadData = resultData["Leads"]["Lead"][i];
+				processLead(leadData, type);	
+			};
 		} else {
 			console.log("needed more attempts, response: " + leadsData);
 			io.emit('lead notification', JSON.stringify({"gotLead": false, "gotLocation": false, "UID": UID, "Market" : type}));
