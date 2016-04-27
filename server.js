@@ -198,7 +198,8 @@ io.on('connection', function(socket){
 function processLeads(leadsData, type, i) {
 	if (i < leadsData.length) {
 		processLead(leadsData, type, i);
-	}
+	};
+}
 
 function processLead(leadsData, type, i) {
 	var dbData = processLeadData(leadsData[i]);
