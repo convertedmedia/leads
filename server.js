@@ -177,7 +177,7 @@ function getLead(type, order) {
 	}, function (error, response, body) {
 		var resultData = parser.toJson(body, {object: true});
 		if (resultData["Leads"]["sentcount"] > 0) {
-			for (i = 0; i < leadsData["Leads"]["sentcount"]; i++) {
+			for (i = 0; i < resultData["Leads"]["sentcount"]; i++) {
 				var leadData = resultData["Leads"]["Lead"][i];
 				processLead(leadData, type);	
 			};
