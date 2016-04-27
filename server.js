@@ -198,8 +198,8 @@ function processLeads(leadsData, type, i) {
 	};
 }
 
-function processLead(leadsData, type, i) {
-	var dbData = processLeadData(leadsData[i]);
+function processLead(leadData, type) {
+	var dbData = processLeadData(leadData);
 	dbData.email = dbData.email.toLowerCase();
 	sendToDb(dbData);
 }	
