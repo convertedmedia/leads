@@ -203,29 +203,7 @@ function processLeads(leadsData, type, i) {
 function processLead(leadsData, type, i) {
 	var dbData = processLeadData(leadsData[i]);
 	dbData.email = dbData.email.toLowerCase();
-	connection.query('SELECT * FROM contact WHERE contact_email = ?;', dbData.email, function(err, results, fields) {
-		if (results.length > 0) {
-			console.log(JSON.stringify(results[0]);
-			dbData.contact_id = results[0].contact_id;
-			processLeads(leadsData, type, i+1);
-			sendToDb(dbData);
-		} else {
-			var contactData = {
-				contact_name : dbData.name,
-				contact_company : dbData.company,
-				contact_email : dbData.email,
-				contact_phone : dbData.phone
-			};
-			connection.query('INSERT INTO contact SET ?;', contactData, function(err, result) {
-				if(err) {
-					console.log(err);
-				};
-				dbData.contact_id = result.insertId;
-				processLeads(leadsData, type, i+1);
-				sendToDb(dbData);
-			});
-		};
-	});
+	sendToDb(dbData);
 }	
 
 function sendToDb(dbData) {
